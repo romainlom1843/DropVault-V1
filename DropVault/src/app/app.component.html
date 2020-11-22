@@ -5,8 +5,26 @@
           {{title}}
         <h2> Le site de partage de documents de manière sécurisée</h2>
         </h1>
+        <p>
         <img width="200" alt="DropVault Logo" src="../images/DropVault.jpg">
+        </p>
       </div>
-
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive = "active"><a routerLink=" " > Acceuil</a></li>
+                <li routerLinkActive = "active"><a routerLink="top10/" > Top10</a></li>
+                <li routerLinkActive = "active"><a routerLink="jokes/" > Jokes</a></li>
+            </ul>
+        </div>
+    
+    </nav>
+    <div class="container">
+        <div class="row">
+        <router-outlet></router-outlet>
+        </div>
+        
+    </div>
+      <DV-formulaire></DV-formulaire>
       <router-outlet></router-outlet>
 
