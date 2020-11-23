@@ -1,5 +1,14 @@
 div
 {
-    background-image: url(../images/fond.jpg);
+    
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    color: black
+    
+    
 }
 
+.navbar navbar-default
+{
+    
+}
