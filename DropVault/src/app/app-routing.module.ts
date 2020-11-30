@@ -8,7 +8,7 @@ import { PlatformSharingComponent } from './platform-sharing/platform-sharing.co
 const routes: Routes = [
   {path : 'auth', component: FormulaireComponent},
   {path : 'share', component : PlatformSharingComponent},
-  {path : '', component: AppComponent}
+  {path : ' ', component: AppComponent}
 ];
 
 @NgModule({

@@ -1,14 +1,10 @@
-div
+.container
 {
-    
-    font-size: large;
+    font-size: 200%;
+    color: black;
     font-family: 'Times New Roman', Times, serif;
-    color: black
+    border-style: solid;
     
-    
+
 }
 
-.navbar navbar-default
-{
-    
-}

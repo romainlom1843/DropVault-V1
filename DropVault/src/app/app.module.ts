@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { PlatformSharingComponent } from './platform-sharing/platform-sharing.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

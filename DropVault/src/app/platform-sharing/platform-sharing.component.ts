@@ -2,13 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'DV-platform-sharing',
-  template: `
-    <p>
-      platform-sharing works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: './platform-sharing.component.html',
+  styleUrls: ['./platform-sharing.component.css']
 })
 export class PlatformSharingComponent implements OnInit {
 
