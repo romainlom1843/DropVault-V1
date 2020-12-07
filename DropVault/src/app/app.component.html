@@ -1,35 +1,57 @@
 
    <!--The content below is only a placeholder and can be replaced.-->
+   <header>
     <div style="text-align:center" class="content">
+        <img  alt="DropVault Logo" src="../assets/images/share.png" class="logo">
         <h1 class="titre1">
-          Bienvenue sur , <strong>{{title}}</strong>
-        <h2> Le site de partage de documents de manière sécurisée</h2>
+          <em>Bienvenue sur , <strong>{{title}}</strong></em>
+        <h2 class="titre1"> Le site de partage de documents de manière sécurisée</h2>
         </h1>
         
       </div>
+      <img  alt="DropVault Logo2" src="../assets/images/share.png" class="share">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li routerLinkActive = "active"><a routerLink="/"> Accueil</a></li>
+                <li routerLinkActive = "active"><a routerLink="accueil/"> Accueil</a></li>
                 <li routerLinkActive = "active"><a routerLink="auth/" >Authentification</a></li>
                 <li routerLinkActive = "active"><a routerLink="share/" >Platform-Sharing</a></li>
             </ul>
         </div>
     
     </nav>
-    <br>
-    <div class="container">
-      <p>
-        DropVault est le premier site de partage de documents en ligne qui sécurise les échanges entre individus authentifiés.
-        Le site utilise un algorithme de chiffrage blowfish pour chiffrer les documents stocker sur la plateforme. 
-        Vous pouvez avoir confiance en nous ! Vos ressources sont entre de bonnes mains. 
-        Chaque utilisateur à le droit d'accèder à la liste des fichiers qu'il a upload sur la plateforme ainsi il peut échanger
-        avec d'autres utilisateurs de son choix. Ainsi tous les documents sont maintenus secrets.
-        Celui qui cache son secret est maître de sa route !
-      </p>
+   </header>
+   
+  
 
-        
-    </div>
       
       <router-outlet></router-outlet>
 
+      <footer class="pied">
+
+        <h1> Nous contacter </h1>
+        <div class="container-fluid">
+          <ul class="container-fluid">
+          <li class="list-group-items">Réseaux     
+                   
+              <div> 
+                <img  alt="facebook Logo" src="../assets/images/facebook.png" class="facebook">
+                <a href="http://facebook.com">Facebook</a>
+              </div>              
+              <div> <img  alt="instagram Logo" src="../assets/images/instagram.png" class="instagram">
+                 <a href="http://instagram.com">Instagram</a>
+              </div>
+              
+                <div>  <img  alt="snapchat Logo" src="../assets/images/Snapchat.png" class="snapchat"> 
+                  <a href="http://snapchat.com">Snapchat</a>
+                </div>
+               
+          </li>   
+          <li class="list-group-items">Email</li>
+          <li class="list-group-items">Aide</li>
+          <li class="list-group-items">A propos</li>
+        </ul>
+      </div>
+      
+        
+      </footer>

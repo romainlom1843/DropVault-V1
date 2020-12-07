@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { PlatformSharingComponent } from './platform-sharing/platform-sharing.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FormulaireComponent,
-    PlatformSharingComponent
+    PlatformSharingComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
