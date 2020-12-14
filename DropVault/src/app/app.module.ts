@@ -8,6 +8,7 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
 import { PlatformSharingComponent } from './platform-sharing/platform-sharing.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { from } from 'rxjs';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { from } from 'rxjs';
     AppComponent,
     FormulaireComponent,
     PlatformSharingComponent,
-    AccueilComponent
+    AccueilComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
