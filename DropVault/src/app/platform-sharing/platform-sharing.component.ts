@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
+
+@Injectable()
 
 @Component({
   selector: 'DV-platform-sharing',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlatformSharingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private HttpClient: HttpClientModule) { }
 
   ngOnInit(): void {
   }

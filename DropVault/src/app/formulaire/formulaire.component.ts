@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+
+@Injectable()
 
 @Component({
   selector: 'DV-formulaire',
@@ -8,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class FormulaireComponent implements OnInit {
 
-  constructor() { }
+  constructor(private HttpClient: HttpClientModule) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +21,16 @@ export class FormulaireComponent implements OnInit {
   const email = form.value['email']
   const tel = form.value['tel']
   const pasword = form.value['password']
+  }
+
+  saveContactToServer()
+  {
+   /* this.HttpClient
+    .post('https://serveur-adresse/contact.json', this.onSubmit)
+    .subscribe(
+      next: () =>
+
+    )*/
   }
 
 }
