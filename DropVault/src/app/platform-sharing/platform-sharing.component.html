@@ -7,18 +7,18 @@
         <input type="file" id="depot" class="form-control" ngModel>
     </div>
     <div class="row">
-      <button type="submit" class="btn-success"> Partager</button>
+      <button type="submit" class="btn-success" (click)="onCreate()"> Partager</button>
     </div>
   </form>
     <h1>Liste de vos <strong>documents</strong></h1>
     <div class="row">
-      <button type="submit" class="btn-danger"> Retirer</button>
+      <button type="submit" class="btn-danger" (click)="onDelete()"> Retirer</button>
     </div>
     <div class="row">
-      <button type="submit" class="btn-primary"> Modifier</button>
+      <button type="submit" class="btn-primary" (click)="onUpdate()"> Modifier</button>
     </div>
     <div class="row">
-      <button type="submit" class="btn-warning"> Lister</button>
+      <button type="submit" class="btn-warning" (click)="onRead()"> Lister</button>
     </div>
 
    

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
@@ -9,6 +8,11 @@ import { PlatformSharingComponent } from './platform-sharing/platform-sharing.co
 import { AccueilComponent } from './accueil/accueil.component';
 import { from } from 'rxjs';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { FormsModule } from '@angular/forms';
+import { AuthentificationService } from './Services/authentification.service';
+import { ErrorComponent } from './error/error.component';
+import { GuardService } from './Services/guard.service'
+
 
 
 @NgModule({
@@ -17,14 +21,17 @@ import { SignInComponent } from './sign-in/sign-in.component';
     FormulaireComponent,
     PlatformSharingComponent,
     AccueilComponent,
-    SignInComponent
+    SignInComponent,
+    ErrorComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [AuthentificationService,GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
