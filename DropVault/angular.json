@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DropVault"
+    }
+  },
+  "defaultProject": "DropVault",
+  "cli": {
+    "analytics": "4fdaaed6-4911-48fd-bb8f-13ba21571c20"
+  }
 }
