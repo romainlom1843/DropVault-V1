@@ -68,7 +68,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "DropVault:build"
+            "browserTarget": "DropVault:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -129,6 +130,6 @@
   },
   "defaultProject": "DropVault",
   "cli": {
-    "analytics": "4fdaaed6-4911-48fd-bb8f-13ba21571c20"
+    "analytics": "34b577f2-f098-4e2c-aad4-cc9bb7cb316e"
   }
 }
