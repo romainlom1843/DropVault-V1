@@ -1,24 +1,24 @@
 
     <h1>Déposez vos <strong>documents ici</strong></h1>
-    <form>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
         <label for="depot">
         </label>
-        <input type="file" id="depot" class="form-control" ngModel>
+        <input type="file" id="depot" class="form-control" name="depot" ngModel required>
     </div>
     <div class="row">
-      <button type="submit" class="btn-success" (click)="onCreate()"> Partager</button>
+      <button type="submit" class="btn-success" [disabled]="f.invalid"> Partager</button>
     </div>
   </form>
     <h1>Liste de vos <strong>documents</strong></h1>
     <div class="row">
-      <button type="submit" class="btn-danger" (click)="onDelete()"> Retirer</button>
+      <button type="submit" class="btn-danger" > Retirer</button>
     </div>
     <div class="row">
-      <button type="submit" class="btn-primary" (click)="onUpdate()"> Modifier</button>
+      <button type="submit" class="btn-primary" > Modifier</button>
     </div>
     <div class="row">
-      <button type="submit" class="btn-warning" (click)="onRead()"> Lister</button>
+      <button type="submit" class="btn-warning" > Lister</button>
     </div>
 
    

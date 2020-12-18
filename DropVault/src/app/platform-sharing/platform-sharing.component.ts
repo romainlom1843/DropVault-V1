@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
+import { NgForm } from '@angular/forms';
 
 @Injectable()
 
@@ -11,40 +12,26 @@ import { FormsModule } from '@angular/forms'
 })
 export class PlatformSharingComponent implements OnInit {
 
-  constructor(private HttpClient: HttpClientModule) { }
+  constructor(private HttpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
-  onCreate(){
-    /*File = [
-      {
-        name: 'Machine à laver',
-        status: 'éteint'
-      },
-      {
-        name: 'Frigo',
-        status: 'allumé'
-      },
-      {
-        name: 'Ordinateur',
-        status: 'éteint'
-      }
-    ] avec un ng for*/
-     
+  onSubmit(form: NgForm){
 
-  }
-  onDelete()
-  {
-
-  }
-  onUpdate()
-  {
-
-  }
-  onRead()
-  {
-    //<li [ngClass]="{'list-group-item': true,
-
-  }
-
+     // form.value['depot'] 
+   const quantity =1
+   const headers = { 'content-type': 'application/json'}
+   
+    this.HttpClient
+      .post('http://localhost:4200/api/v1/files', { "name": "apple", "quantity": quantity},{'headers':headers})
+      .subscribe(
+          () => {
+          console.log('Fichier téléchargé !');
+          },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+          }
+      );
+                    
+}
 }
