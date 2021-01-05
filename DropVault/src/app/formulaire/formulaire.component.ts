@@ -34,7 +34,18 @@ export class FormulaireComponent implements OnInit {
         }
       );*/
   
-  
+  const headers = { 'content-type': 'application/json'}
+   
+  this.HttpClient
+      .post('http://localhost:4200/api/users', { "first_name": name, "last_name": surname, "email": email, "tel": tel, "pwd":pasword},{'headers':headers})
+      .subscribe(
+          () => {
+          console.log('Fichier téléchargé !');
+          },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+          }
+      );
   
   }
 
@@ -50,7 +61,6 @@ export class FormulaireComponent implements OnInit {
           console.log('Erreur ! : ' + error);
         }
       );*/
-
     
   }
 
