@@ -1,0 +1,11 @@
+/home/alexis/Documents/rust-rest-example/target/rls/debug/deps/parking_lot_core-cbd9aa9947e8d661.rmeta: /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/lib.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/parking_lot.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/spinwait.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/thread_parker/mod.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/util.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/word_lock.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/thread_parker/linux.rs
+
+/home/alexis/Documents/rust-rest-example/target/rls/debug/deps/parking_lot_core-cbd9aa9947e8d661.d: /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/lib.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/parking_lot.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/spinwait.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/thread_parker/mod.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/util.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/word_lock.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/thread_parker/linux.rs
+
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/lib.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/parking_lot.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/spinwait.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/thread_parker/mod.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/util.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/word_lock.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/parking_lot_core-0.8.0/src/thread_parker/linux.rs:

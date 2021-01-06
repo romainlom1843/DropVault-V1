@@ -1,0 +1,12 @@
+/home/alexis/Documents/rust-rest-example/target/rls/debug/deps/actix_connect-1f79f1f953047598.rmeta: /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/lib.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/connect.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/connector.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/error.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/resolve.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/service.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/ssl/mod.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/uri.rs
+
+/home/alexis/Documents/rust-rest-example/target/rls/debug/deps/actix_connect-1f79f1f953047598.d: /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/lib.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/connect.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/connector.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/error.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/resolve.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/service.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/ssl/mod.rs /home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/uri.rs
+
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/lib.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/connect.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/connector.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/error.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/resolve.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/service.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/ssl/mod.rs:
+/home/alexis/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-connect-1.0.2/src/uri.rs:
