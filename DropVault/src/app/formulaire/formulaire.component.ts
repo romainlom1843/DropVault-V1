@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'
+import { Router } from '@angular/router';
 
 @Injectable()
 
@@ -12,7 +13,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class FormulaireComponent implements OnInit {
 
-  constructor(private HttpClient: HttpClient) { }
+  constructor(private HttpClient: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -37,7 +38,7 @@ export class FormulaireComponent implements OnInit {
   const headers = { 'content-type': 'application/json'}
    
   this.HttpClient
-      .post('http://localhost:4200/api/users', { "first_name": name, "last_name": surname, "email": email, "tel": tel, "pwd":pasword},{'headers':headers})
+      .post('http://localhost:4200/api2/users', { "first_name": name, "last_name": surname, "email": email, "tel": tel, "pwd":pasword},{'headers':headers})
       .subscribe(
           () => {
           console.log('Fichier téléchargé !');
@@ -46,6 +47,7 @@ export class FormulaireComponent implements OnInit {
           console.log('Erreur ! : ' + error);
           }
       );
+      this.router.navigate([''])
   
   }
 
