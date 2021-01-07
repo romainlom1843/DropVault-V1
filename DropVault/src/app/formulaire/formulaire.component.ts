@@ -38,7 +38,7 @@ export class FormulaireComponent implements OnInit {
   const headers = { 'content-type': 'application/json'}
    
   this.HttpClient
-      .post('http://localhost:4200/api2/users', { "first_name": name, "last_name": surname, "email": email, "tel": tel, "pwd":pasword},{'headers':headers})
+      .post('http://localhost:4200/prox/users', { "first_name": name, "last_name": surname, "email": email, "tel": tel, "pwd":pasword},{'headers':headers})
       .subscribe(
           () => {
           console.log('Fichier téléchargé !');
