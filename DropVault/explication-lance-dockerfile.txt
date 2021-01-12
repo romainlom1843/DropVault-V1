@@ -4,6 +4,9 @@ commande à rentrer
 docker build -t image-dropvault .
 
 #execution de l'image docker
-docker run --name dropvault-server -d -p 8080:80 image-dropvault
+docker run --name dropvault-server -d -p 4200:4200 image-dropvault
 
 https://wkrzywiec.medium.com/build-and-run-angular-application-in-a-docker-container-b65dbbc50be8
+})
+export class UploadFilesService {
+  private baseUrl = 'http://localhost:4
