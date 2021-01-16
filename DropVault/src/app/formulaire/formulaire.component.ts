@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -19,11 +19,9 @@ export class FormulaireComponent implements OnInit {
   }
   onSubmit(form: NgForm){
   console.log(form.value)
-  const name = form.value['name']
-  const surname = form.value['surname']
+  const username = form.value['username']
   const email = form.value['email']
-  const tel = form.value['tel']
-  const pasword = form.value['password']
+  const password = form.value['password']
   /*this.HttpClient
       .put('https://dropvault-v1.appspot.com', name)
       .subscribe(
@@ -35,35 +33,40 @@ export class FormulaireComponent implements OnInit {
         }
       );*/
   
-  const headers = { 'content-type': 'application/json'}
+  const headers = { 'Content-Type': 'application/json', 'Referer': '-'}
+
+  /*const httpOptions = {
+    headers: new HttpHeaders( { 'Content-Type': 'application/json' } )
+  };*/
    
   this.HttpClient
-      .post('http://localhost:4200/prox/users', { "first_name": name, "last_name": surname, "email": email, "tel": tel, "pwd":pasword},{'headers':headers})
+      .post('/prox/api/auth/signup', 
+      {"username": username, "email": email, "password":password}, {headers})
       .subscribe(
-          () => {
-          console.log('Fichier téléchargé !');
+        () => {
+          console.log('Utilisateur enregistré !');
           },
         (error) => {
           console.log('Erreur ! : ' + error);
           }
       );
       this.router.navigate([''])
-  
-  }
 
-  saveContactToServer()
-  {
-   /* this.HttpClient
-      .put('https://dropvault-v1.appspot.com', this.onSubmit)
+      /*this.HttpClient.get('/prox/api/ping')
       .subscribe(
-          () => {
-          console.log('Enregistrement terminé !');
-        },
+        () => {
+          console.log('Utilisateur enregistré !');
+          },
         (error) => {
           console.log('Erreur ! : ' + error);
-        }
+          }
       );*/
+      
     
   }
 
+  
+
+  
+  
 }

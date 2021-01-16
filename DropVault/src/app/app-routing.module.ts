@@ -14,8 +14,8 @@ import { GuardService } from './Services/guard.service';
 
 const routes: Routes = [
   {path : 'auth', component: FormulaireComponent},
-  {path : 'share', /*canActivate: [GuardService],*/ component : PlatformSharingComponent},
-  {path : 'accueil', /*canActivate: [GuardService],*/ component: AccueilComponent},
+  {path : 'share', canActivate: [GuardService], component : PlatformSharingComponent},
+  {path : 'accueil', canActivate: [GuardService], component: AccueilComponent},
   {path : '', component: SignInComponent },
   {path: 'not-found', component: ErrorComponent },
   {path: '**', redirectTo: 'not-found' }
