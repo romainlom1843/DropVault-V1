@@ -23,29 +23,8 @@ export class SignInComponent implements OnInit {
 
   onSignIn(form:NgForm) {
      this.authservice.signIn(form);
-
-        /*const username = form.value['username']
-        const pasword = form.value['password']
-        const headers = { 'Content-Type': 'application/json', 'Referer': '-'}
-        console.log('Sign in successful!');
-        this.HttpClient
-      .post('/prox/api/auth/login', {"username_or_email": username, "password":pasword}, {headers})
-      .subscribe(
-          () => {
-          console.log('Utilisateur connecté !');
-          this.authStatus = true;
-          this.router.navigate(['accueil/']);
-          },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-          this.authStatus = false;
-          //this.router.navigate(['']);
-          }
-        );*/
       }
-  onSignOut(){
-    this.authservice.signOut();
-  }
+
 }
 
 

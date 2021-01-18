@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { HttpClient , HttpEventType, HttpResponse } from '@angular/common/http'
 import { UploadFilesService } from '../Services/upload-files.service';
 import { Observable } from 'rxjs';
+import { AuthentificationService } from '../Services/authentification.service'
 
 @Injectable()
 
@@ -19,7 +20,7 @@ export class PlatformSharingComponent implements OnInit {
 
   fileInfos?: Observable<any>;
 
-  constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient ) { }
+  constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService ) { }
 
   ngOnInit(): void {
     this.fileInfos = this.uploadService.getFiles();
@@ -64,5 +65,9 @@ export class PlatformSharingComponent implements OnInit {
       this.selectedFiles = undefined;
     }
   }
+  onSignOut(){
+    this.authService.signOut();
+  }
+
 
 }

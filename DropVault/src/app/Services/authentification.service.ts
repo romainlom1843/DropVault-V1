@@ -32,7 +32,7 @@ export class AuthentificationService {
         (error) => {
           console.log('Erreur ! : ' + error);
           this.authStatus = false;
-          //this.router.navigate(['']);
+          
           }
         );
  
@@ -53,7 +53,7 @@ export class AuthentificationService {
       (error) => {
         console.log('Erreur ! : ' + error);
         this.authStatus = true;
-        //this.router.navigate(['']);
+      
         }
       );
 
