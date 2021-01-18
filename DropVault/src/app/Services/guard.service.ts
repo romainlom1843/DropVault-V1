@@ -15,7 +15,7 @@ export class GuardService implements CanActivate {
 
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        if(this.authService.isAuth) {
+        if(this.authService.authStatus) {
             return true;
           } else {
             this.router.navigate(['auth/']);

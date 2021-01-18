@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthentificationService } from '../Services/authentification.service'
 
 @Component({
   selector: 'DV-accueil',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authservice: AuthentificationService) { }
 
   ngOnInit(): void {
+  }
+
+  onSignOut(){
+    this.authservice.signOut();
   }
 
 }
