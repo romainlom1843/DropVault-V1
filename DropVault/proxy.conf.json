@@ -7,5 +7,15 @@
       "pathRewrite": {
         "^/prox": ""
       }
-  }
+  },
+
+  "/stock/*": {
+    "target": "http://localhost:8002",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/stock": ""
+    }
+}
 }

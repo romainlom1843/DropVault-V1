@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadFilesService {
-  private baseUrl = 'http://localhost:4200/api';
+  private baseUrl = 'http://localhost:4200/stock';
 
   constructor(private http: HttpClient) { }
 
