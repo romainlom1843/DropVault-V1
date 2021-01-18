@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UploadFilesService {
   private baseUrl = '/stock';
 
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
@@ -29,4 +29,21 @@ export class UploadFilesService {
   getFiles(): Observable<any> {
     return this.http.get(`${this.baseUrl}/files`);
   }
+
+  deleteFiles(file : string) {
+    this.http
+  .delete(`${this.baseUrl}/files/${file}`)
+  .subscribe(
+      () => {
+      console.log('Fichier supprimé'); 
+      },
+    (error) => {
+      console.log('Erreur ! : ' + error);
+      }
+    );
+
+}
+
+
+
 }

@@ -36,10 +36,11 @@
   >
     <li class="list-group-item">
       <a href="{{ file.url }}">{{ file.name }}</a>
+      <button type="submit" class="btn btn-danger" (click)= "onDelete(file.name)">supprimer</button>
     </li>
   </ul>
 </div>
-<button type="submit" class="btn btn-danger" (click)="onSignOut()">Se deconnecter</button>
+<button type="submit" class="btn btn-warning" (click)="onSignOut()">Se deconnecter</button>
   
 
 
