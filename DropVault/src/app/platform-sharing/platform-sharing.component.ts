@@ -68,6 +68,9 @@ export class PlatformSharingComponent implements OnInit {
   onSignOut(){
     this.authService.signOut();
   }
-
+  
+  onDelete(fil: string){
+    this.uploadService.deleteFiles(fil);
+  }
 
 }
