@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { AuthentificationService } from '../Services/authentification.service'
+
 @Injectable()
 
 @Component({
@@ -12,12 +14,15 @@ import { Router } from '@angular/router';
 })
 export class FormulaireComponent implements OnInit {
 
-  constructor(private HttpClient: HttpClient, private router: Router) { }
+  constructor(private HttpClient: HttpClient, private router: Router, private authservice: AuthentificationService) { }
 
   ngOnInit(): void {
   }
   onSubmit(form: NgForm){
-  console.log(form.value)
+    this.authservice.signUp(form);
+
+
+  /*console.log(form.value)
   const username = form.value['username']
   const email = form.value['email']
   const password = form.value['password']
@@ -35,6 +40,8 @@ export class FormulaireComponent implements OnInit {
           console.log('Erreur ! : ' + error);
           }
       );
-      this.router.navigate([''])
+      this.router.navigate([''])*/
   }
+
+  
 }

@@ -59,4 +59,27 @@ export class AuthentificationService {
 
   }
 
+  signUp(form:NgForm){
+    console.log(form.value)
+    const username = form.value['username']
+    const email = form.value['email']
+    const password = form.value['password']
+  
+    const headers = { 'Content-Type': 'application/json', 'Referer': '-'}
+  
+    this.HttpClient
+        .post('/prox/api/auth/signup', 
+        {"username": username, "email": email, "password":password}, {headers})
+        .subscribe(
+          () => {
+            console.log('Utilisateur enregistré !');
+            },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+            }
+        );
+        this.router.navigate([''])
+
+  }
+
 }
