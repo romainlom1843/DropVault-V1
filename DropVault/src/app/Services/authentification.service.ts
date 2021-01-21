@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class AuthentificationService {
 
     token = String; 
+    filename = String;
     authStatus = false;
     constructor( private router: Router, private HttpClient: HttpClient)
     {
@@ -16,6 +17,7 @@ export class AuthentificationService {
       
      
         const username = form.value['username']
+        this.filename= username;
         const pasword = form.value['password']
         const headers = { 'Content-Type': 'application/json'}
         console.log('Sign in successful!');
@@ -61,6 +63,7 @@ export class AuthentificationService {
 
   signUp(form:NgForm){
     console.log(form.value)
+
     const username = form.value['username']
     const email = form.value['email']
     const password = form.value['password']
