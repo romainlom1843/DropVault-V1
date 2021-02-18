@@ -1,39 +1,79 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { HttpClient} from '@angular/common/http';
 import { AuthentificationService } from '../Services/authentification.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadFilesService {
-  private baseUrl = '/stock';
-  public fileusername = this.authService.filename;
+  
+  public id;
+  public filename;
+  public content;
+  public res;
+  
 
-  constructor(private router: Router, private http: HttpClient, private authService: AuthentificationService) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
-    formData.append('file', file, `${this.fileusername}-${file.name}`);
+  constructor(private http: HttpClient, private authService: AuthentificationService) { }
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
+  upload(content: String, filename: String)  {
+  var username= this.authService.user
+  console.log(username);
+  const headers = { 'Content-Type': 'application/json'}
+  
+   this.http
+        .post('/stock/files', 
+        {"filename": filename, "content": content, "username":username}, {headers})
+        .subscribe(
+          () => {
+ 
+            this.getFiles();
+            },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+            }
+        );
 
-    console.log(file.name)
-
-    return this.http.request(req);
+   
   }
 
-  getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
+  getFiles():String[] {
+    var username= this.authService.user
+     this.http.get(`/stock/files/${username}`)
+     .subscribe(
+      (response) => {
+        
+        this.filename = response;
+        
+        },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+        }
+     )
+     return this.filename
+     
   }
-
-  deleteFiles(file : string) {
+  dowload(id : number):string {
     this.http
-  .delete(`${this.baseUrl}/files/${file}`)
+  .get(`/stock/download/${id}`)
+  .subscribe(
+      (response) => {
+      console.log('Fichier téléchargé'); 
+      console.log(response);
+      this.content = response ["content"];
+      console.log(this.content);
+      
+      },
+    (error) => {
+      console.log('Erreur ! : ' + error);
+      }
+    );
+    return this.content
+  }
+  deleteFiles(id : number) {
+    this.http
+  .delete(`/stock/files/${id}`)
   .subscribe(
       () => {
       console.log('Fichier supprimé'); 
@@ -42,6 +82,21 @@ export class UploadFilesService {
       console.log('Erreur ! : ' + error);
       }
     );
+
+}
+get_id(filename : String):number{
+  this.http
+  .get(`/stock/file/${filename}`)
+  .subscribe(
+      (response) => {
+      console.log('id');
+      this.res = response;
+      },
+    (error) => {
+      console.log('Erreur ! : ' + error);
+      }
+    );
+    return this.res;
 
 }
 

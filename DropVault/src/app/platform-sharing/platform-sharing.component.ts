@@ -4,6 +4,9 @@ import { UploadFilesService } from '../Services/upload-files.service';
 import { Observable } from 'rxjs';
 import { AuthentificationService } from '../Services/authentification.service'
 
+
+const rust = import("../../../wasm/pkg");
+
 @Injectable()
 
 @Component({
@@ -12,34 +15,37 @@ import { AuthentificationService } from '../Services/authentification.service'
   styleUrls: ['./platform-sharing.component.css']
 })
 export class PlatformSharingComponent implements OnInit {
-
+  filename 
+  selectedFile 
   selectedFiles?: FileList;
-  currentFile?: File;
+  /*currentFile?: File;
   progress = 0;
-  message = '';
+  message = '';*/
+   listFile 
+  
+ 
 
   fileInfos?: Observable<any>;
 
   constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService ) { }
 
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.listFile= this.uploadService.getFiles();
+     
   }
-  
-  selectFile(event: any): void {
-    this.selectedFiles = event.target.files;
+  getfiles(){
+    this.listFile= this.uploadService.getFiles();
   }
-  
-  upload(): void {
+
+ /* upload(content:String): void {
     this.progress = 0;
+    
   
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
   
       if (file) {
-        this.currentFile = file;
-  
-        this.uploadService.upload(this.currentFile).subscribe(
+         this.uploadService.upload(content).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
@@ -64,13 +70,56 @@ export class PlatformSharingComponent implements OnInit {
   
       this.selectedFiles = undefined;
     }
+  }*/
+
+  download(name:string){
+    var id = this.uploadService.get_id(name);
+    var content = this.uploadService.dowload(id)
+    this.dechiffrement(content);
   }
-  onSignOut(){
-    this.authService.signOut();
+  onDelete(name:string){
+    var id = this.uploadService.get_id(name);
+    this.uploadService.deleteFiles(id);
   }
+  chiffrement(event: any){
+    this.filename = event.target.files[0].name;
+    console.log(this.filename);
+    this.selectedFile = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const text = reader.result.toString().trim();
+        console.log(text);
+      
+    rust.then( res => {
+      var result = res.encrypt(text);
+      console.log(result);
+      this.uploadService.upload(result, this.filename);
+     });
+    
+    
+  }
+  reader.readAsText(this.selectedFile);
+  }
+  dechiffrement(content:string){
+    console.log("ici");
+    rust.then( res => {
+      var result = res.decrypt(content);
+      console.log(result);
+      this.downloadToFile(result, this.filename, 'text/plain')
+ 
+     
+     });
+
+  }
+  downloadToFile = (content, filename, contentType) => {
+    const a = document.createElement('a');
+    const file = new Blob([content], {type: contentType});
+    
+    a.href= URL.createObjectURL(file);
+    a.download = filename;
+    a.click();
   
-  onDelete(fil: string){
-    this.uploadService.deleteFiles(fil);
-  }
+    URL.revokeObjectURL(a.href);
+  };
 
 }

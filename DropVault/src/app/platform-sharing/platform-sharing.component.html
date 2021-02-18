@@ -2,45 +2,34 @@
 <div class="row">
   <div class="col-8">
     <label class="btn btn-default p-0">
-      <input type="file" (change)="selectFile($event)" />
+      <input type="file" name="fichier" id="fichier" (change)="chiffrement($event)" ngModel>
     </label>
   </div>
 
   <div class="col-4">
-    <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
+    <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" >
       Upload
     </button>
   </div>
 </div>
 
-<div *ngIf="currentFile" class="progress my-3">
-  <div
-    class="progress-bar progress-bar-info progress-bar-striped"
-    role="progressbar"
-    attr.aria-valuenow="{{ progress }}"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    [ngStyle]="{ width: progress + '%' }"
-  >
-    {{ progress }}%
-  </div>
-</div>
-
-<div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
 
 <div class="card mt-3">
-  <div class="card-header">List of Files</div>
-  <ul
-    class="list-group list-group-flush"
-    *ngFor="let file of fileInfos | async"
-  >
-    <li class="list-group-item">
-      <a href="{{ file.url }}">{{ file.name }}</a>
-      <button type="submit" class="btn btn-danger" (click)= "onDelete(file.name)">supprimer</button>
+  <button class="btn bt-warning" (click)="getfiles()"> Lister files</button>
+  <div class="card-header">List of Files
+    
+  </div>
+  <ul class="list-group list-group-flush"> 
+    <li class="list-group-item" *ngFor="let name of listFile ">
+      <a (click)="download(name)">{{name}}</a>
+      <button type="submit" class="btn btn-danger" (click)= "onDelete(name)">Supprimer</button>
     </li>
   </ul>
 </div>
-<button type="submit" class="btn btn-warning" (click)="onSignOut()">Se deconnecter</button>
+
+  
+
+ 
   
 
 
