@@ -99,6 +99,24 @@ get_id(filename : String):number{
     return this.res;
 
 }
+echange(content:string, filename :string, user : string){
+  const headers = { 'Content-Type': 'application/json'}
+  
+   this.http
+        .post('/stock/files', 
+        {"filename": filename, "content": content, "username":user}, {headers})
+        .subscribe(
+          () => {
+ 
+            this.getFiles();
+            },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+            }
+        );
+
+
+}
 
 
 

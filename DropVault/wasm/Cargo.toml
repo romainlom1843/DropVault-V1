@@ -11,5 +11,7 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
-wasm-bindgen = "0.2"
-
+wasm-bindgen = "0.2.7"
+aes-gcm="0.8.0"
+double-ratchet = "0.1"
+rand_core="^0.4"

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 export class AuthentificationService {
 
-    token = String; 
+    token  
     public user = String;
     authStatus = false;
     constructor( private router: Router, private HttpClient: HttpClient){}
@@ -20,10 +20,10 @@ export class AuthentificationService {
         const headers = { 'Content-Type': 'application/json'}
         
         this.HttpClient
-      .post('/prox/api/auth/login', {"username_or_email": username, "password":password}, {headers})
+      .post('/prox/login', {"username": username, "passwd":password}, {headers})
       .subscribe(
           (response) => {
-          this.token = response['data']['token'];
+          this.token = response;
           console.log(this.token);  
           console.log('Utilisateur connecté !');  
           this.authStatus = true;
@@ -68,8 +68,8 @@ export class AuthentificationService {
     const headers = { 'Content-Type': 'application/json', 'Referer': '-'}
   
     this.HttpClient
-        .post('/prox/api/auth/signup', 
-        {"username": username, "email": email, "password":password}, {headers})
+        .post('/prox/signup', 
+        {"username": username, "email": email, "passwd":password}, {headers})
         .subscribe(
           () => {
             console.log('Utilisateur enregistré !');
