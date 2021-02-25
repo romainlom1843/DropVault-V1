@@ -12,15 +12,18 @@ export class UploadFilesService {
   public filename;
   public content;
   public res;
-  
+  token
 
 
-  constructor(private http: HttpClient, private authService: AuthentificationService) { }
+  constructor(private http: HttpClient, private authService: AuthentificationService) {
+    this.token = this.authService.token
+   }
 
   upload(content: String, filename: String)  {
   var username= this.authService.user
   console.log(username);
-  const headers = { 'Content-Type': 'application/json'}
+  console.log(this.token);
+  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
   
    this.http
         .post('/stock/files', 
@@ -34,13 +37,12 @@ export class UploadFilesService {
             console.log('Erreur ! : ' + error);
             }
         );
-
-   
   }
 
   getFiles():String[] {
     var username= this.authService.user
-     this.http.get(`/stock/files/${username}`)
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
+     this.http.get(`/stock/files/${username}`, {headers})
      .subscribe(
       (response) => {
         
@@ -55,8 +57,9 @@ export class UploadFilesService {
      
   }
   dowload(id : number):string {
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
     this.http
-  .get(`/stock/download/${id}`)
+  .get(`/stock/download/${id}`,{headers})
   .subscribe(
       (response) => {
       console.log('Fichier téléchargé'); 
@@ -72,8 +75,9 @@ export class UploadFilesService {
     return this.content
   }
   deleteFiles(id : number) {
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
     this.http
-  .delete(`/stock/files/${id}`)
+  .delete(`/stock/files/${id}`,{headers})
   .subscribe(
       () => {
       console.log('Fichier supprimé'); 
@@ -85,8 +89,10 @@ export class UploadFilesService {
 
 }
 get_id(filename : String):number{
+  var username = this.authService.user
+  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
   this.http
-  .get(`/stock/file/${filename}`)
+  .get(`/stock/file/${filename}`,{headers})
   .subscribe(
       (response) => {
       console.log('id');
@@ -100,10 +106,10 @@ get_id(filename : String):number{
 
 }
 echange(content:string, filename :string, user : string){
-  const headers = { 'Content-Type': 'application/json'}
+  const headers = { 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}`}
   
    this.http
-        .post('/stock/files', 
+        .post('/stock/echange', 
         {"filename": filename, "content": content, "username":user}, {headers})
         .subscribe(
           () => {

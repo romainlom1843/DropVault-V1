@@ -37,27 +37,6 @@ export class AuthentificationService {
         );
  
     }
-    signOut() {
-      console.log(this.token);
-      const headers = { 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}`}
-      console.log('Logout successful!');
-      this.HttpClient
-    .post('/prox/api/auth/logout', {}, {headers})
-    .subscribe(
-        () => {
-        console.log('Utilisateur déconnecté!'); 
-        this.authStatus = false;
-        this.router.navigate(['']);
-        },
-      (error) => {
-        console.log('Erreur ! : ' + error);
-        this.authStatus = true;
-      
-        }
-      );
-
-  }
-
   signUp(form:NgForm){
     console.log(form.value)
 

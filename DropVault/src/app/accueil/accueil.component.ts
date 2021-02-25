@@ -14,8 +14,4 @@ export class AccueilComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSignOut(){
-    this.authservice.signOut();
-  }
-
 }

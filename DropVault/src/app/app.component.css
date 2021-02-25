@@ -1,27 +1,11 @@
 .titre1
 {
-    font-size: 40px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: black;
-
+    
 }
-
-
-.logo
-{
-    position: absolute; left: 30px; top : 1px;
-    width: 290px;
-}
-.share
-
-{
-    width: 290px;
-    position: absolute; right: 50px; top: 1px;
-}
-.mid
-{
-    width: 600px;
-    position: absolute; top : 300px ; left : 400px;
+.logo{
+    float: left;
 }
 
 
