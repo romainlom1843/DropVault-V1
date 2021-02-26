@@ -12,6 +12,7 @@ export class UploadFilesService {
   public filename;
   public content;
   public res;
+  contents
   token
 
 
@@ -19,24 +20,28 @@ export class UploadFilesService {
     this.token = this.authService.token
    }
 
-  upload(content: String, filename: String)  {
+  upload( filename: String, result) {
   var username= this.authService.user
   console.log(username);
   console.log(this.token);
+  var id_c
   const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
   
    this.http
         .post('/stock/files', 
-        {"filename": filename, "content": content, "username":username}, {headers})
+        {"filename": filename, "username":username}, {headers})
         .subscribe(
-          () => {
- 
-            this.getFiles();
+          (response) => {
+            id_c =response['id'];
+            this.upload_file(result, id_c)
+           
             },
           (error) => {
             console.log('Erreur ! : ' + error);
             }
         );
+        
+  
   }
 
   getFiles():String[] {
@@ -56,23 +61,23 @@ export class UploadFilesService {
      return this.filename
      
   }
-  dowload(id : number):string {
+download(id : number){
     const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
     this.http
   .get(`/stock/download/${id}`,{headers})
   .subscribe(
-      (response) => {
+      () => {
       console.log('Fichier téléchargé'); 
-      console.log(response);
-      this.content = response ["content"];
-      console.log(this.content);
       
+      this.content = this.download_content(id);
+     
       },
     (error) => {
       console.log('Erreur ! : ' + error);
       }
     );
     return this.content
+   
   }
   deleteFiles(id : number) {
     const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
@@ -81,6 +86,7 @@ export class UploadFilesService {
   .subscribe(
       () => {
       console.log('Fichier supprimé'); 
+      this.delete_content(id)
       },
     (error) => {
       console.log('Erreur ! : ' + error);
@@ -95,17 +101,67 @@ get_id(filename : String):number{
   .get(`/stock/file/${filename}`,{headers})
   .subscribe(
       (response) => {
-      console.log('id');
+      
       this.res = response;
       },
     (error) => {
       console.log('Erreur ! : ' + error);
       }
     );
+
     return this.res;
 
 }
-echange(content:string, filename :string, user : string){
+upload_file(content, id_c:number){
+  const headers = { 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}`}
+   this.http
+        .post('/stock/upload', 
+        {"content": content, "id_c":id_c}, {headers})
+        .subscribe(
+          () => {
+ 
+            this.getFiles();
+            },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+            }
+        );
+
+
+}
+
+delete_content(id){
+  const headers = { 'Authorization': `Bearer ${this.token}`}
+  this.http
+.delete(`/stock/remove/${id}`,{headers})
+.subscribe(
+    () => {
+    console.log('Fichier supprimé'); 
+    
+    },
+  (error) => {
+    console.log('Erreur ! : ' + error);
+    }
+  );
+
+}
+download_content(id):string{
+  const headers = { 'Content-type':'application/json','Authorization': `Bearer ${this.token}`}
+  this.http
+.get(`/stock/dwl/${id}`,{headers, responseType:'text'})
+.subscribe(
+    (response ) => {
+    this.contents = response
+    
+    },
+  (error) => {
+    console.log('Erreur ! : ' + error);
+    }
+  );
+  return this.contents
+
+}
+echange(content, filename :string, user : string){
   const headers = { 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}`}
   
    this.http
@@ -122,8 +178,5 @@ echange(content:string, filename :string, user : string){
         );
 
 
-}
-
-
-
+  }
 }

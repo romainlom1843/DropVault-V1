@@ -43,8 +43,9 @@ export class PlatformSharingComponent implements OnInit {
 
 
   download(name:string){
+    
     var id = this.uploadService.get_id(name);
-    var content = this.uploadService.dowload(id)
+    var content = this.uploadService.download_content(id)
     this.dechiffrement(content);
   }
   onDelete(name:string){
@@ -53,30 +54,25 @@ export class PlatformSharingComponent implements OnInit {
   }
   keepFile(event:any){
 	  this.filename = event.target.files[0].name;
-	  console.log(this.filename);
 	  this.selectedFile = event.target.files[0];
 	  const reader = new FileReader();
 	  reader.onload = (e) => {
 	  this.text = reader.result.toString().trim();
-		console.log(this.text);
 	  }
 	  reader.readAsText(this.selectedFile);
   }
   keepFile2(event:any){
 	  this.filename2 = event.target.files[0].name;
-	  console.log(this.filename2);
 	  this.selectedFile2 = event.target.files[0];
 	  const reader = new FileReader();
 	  reader.onload = (e) => {
 	  this.text2 = reader.result.toString().trim();
-		console.log(this.text2);
 	  }
 	  reader.readAsText(this.selectedFile2);
   }
   
   keepKey(event:any){
 	  this.key1 = event.target.value;
-	  console.log(this.key1);
   }
   keepKey2(event:any){
 	  this.key2 = event.target.value;
@@ -84,32 +80,33 @@ export class PlatformSharingComponent implements OnInit {
   }
   keepKey3(event:any){
 	  this.key3 = event.target.value;
-	  console.log(this.key3);
   }
   keepUser(event:any){
     this.user =event.target.value;
-    console.log(this.user)
   }
   chiffrement(){
-      console.log(this.text, this.key1)
+    
 	    rust.then( res => {
 	      var result = res.encrypt(this.text, this.key1);
-	      console.log(result);
-	      this.uploadService.upload(result, this.filename);
+	      this.uploadService.upload(this.filename, result); 
+  
 	     });
   }
+
+
   chiffrement_echange(){
-    console.log(this.text2, this.key3)
+    
     rust.then( res => {
       var result = res.encrypt(this.text2, this.key3);
       console.log(result);
       this.uploadService.echange(result, this.filename2, this.user);
      });
 }
-  dechiffrement(content:string){
+  dechiffrement(content){
+    
     rust.then( res => {
       var result = res.decrypt(content, this.key2);
-      console.log(result);
+      console.log("ce",result);
       this.downloadToFile(result, this.filename, 'text/plain')
  
      

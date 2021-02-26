@@ -12,10 +12,9 @@ pub fn encrypt(contents: String, key: String) -> String{
 
   	let key = GenericArray::from_slice(key.as_bytes());
 	let cipher = Aes256Gcm::new(key);
-    	let nonce = GenericArray::from_slice(b"unique nonce"); // 96-bits; unique per message
+    	let nonce = GenericArray::from_slice(b"unique nonce");
     	let ciphertext = cipher.encrypt(nonce, contents.as_bytes().as_ref())
-   	 .expect("encryption failure!"); // NOTE: handle this error to avoid panics!
-   	//let ciphertextstring = std::str::from_utf8(&ciphertext).expect("Parsing string");
+   	 .expect("encryption failure!"); 
     	return hex::encode(ciphertext);
     	
     
@@ -24,10 +23,11 @@ pub fn encrypt(contents: String, key: String) -> String{
 pub fn decrypt(ciphertext: String, key: String) -> String {
 	let key = GenericArray::from_slice(key.as_bytes());
 	let cipher = Aes256Gcm::new(key);
-	let nonce = GenericArray::from_slice(b"unique nonce"); // 96-bits; unique per message
-   	let decryptext = cipher.decrypt(nonce, ciphertext.as_bytes().as_ref())
-   	 .expect("decryption failure!"); // NOTE: handle this error to avoid panics!
-   	return hex::encode(decryptext);
+	let nonce = GenericArray::from_slice(b"unique nonce"); 
+  	 let hex = hex::decode(ciphertext).expect("vec<u8>");
+   	let decryptext = cipher.decrypt(nonce, hex.as_ref())
+   	 .expect("decryption failure!"); 
+   	return String::from_utf8(decryptext).expect("string");
     
 }
 
