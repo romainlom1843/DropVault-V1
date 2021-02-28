@@ -11,18 +11,42 @@ body{
     background-image: url(../../assets/images/fon6.png);
 }
 .p1{
+    
     font-size: 300%;
 }
 .p2
 {
-    color: white;
-    font-size: 400%;
+    
+    font-size: 300%;
 }
 .p3{
-    font-size: 300%;
+    font-size: 200%;
 }
 .btn{
     color: black;
 
 }
+.button{
+    text-align: center;
 
+    height: 200%;
+}
+
+.p4{
+    font-size: 200%;
+}
+footer{
+    background-image: url(../../assets/images/fond.png);
+}
+.foot1{
+    color: white;
+}
+.foot2{
+    color: white;
+}
+.foot3{
+    color: white;
+}
+.foot4{
+    color: white;
+}

@@ -4,27 +4,39 @@
 }
 .titre
 {
-    text-align: center;
-    
     font-weight: bold;
+    font-size: 150%;
+    padding-left: 25%;
 }
 .titre2
 {
     color: black;
-    text-align: center;
+    padding-left: 25%;
+    
 }
 
-body{
-    background: #67BE4B;
-}
 
-/* Full-width inputs */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
+form{
+    padding-left: 40%;
+ }
 
+ footer{
+    background-image: url(../../assets/images/fond.png);
+
+}
+.foot1{
+    color: white;
+    float:left;
+}
+.foot2{
+    color: white;
+    
+    
+}
+.foot3{
+    color: white;
+    float:left;
+}
+.foot4{
+    color: white;
+}

@@ -27,6 +27,8 @@ export class PlatformSharingComponent implements OnInit {
   text:string
   text2
   user
+  length
+  type
  
 
   fileInfos?: Observable<any>;
@@ -54,15 +56,25 @@ export class PlatformSharingComponent implements OnInit {
   }
   keepFile(event:any){
 	  this.filename = event.target.files[0].name;
+    this.length = event.target.files[0].size;
+    this.type = event.target.files[0].type;
 	  this.selectedFile = event.target.files[0];
-	  const reader = new FileReader();
-	  reader.onload = (e) => {
-	  this.text = reader.result.toString().trim();
-	  }
-	  reader.readAsText(this.selectedFile);
+    if (this.length<5000000)
+    {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+      this.text = reader.result.toString().trim();
+      }
+      reader.readAsText(this.selectedFile);
+    }
+    else {
+      alert("fichier trop grand");
+    }
   }
   keepFile2(event:any){
 	  this.filename2 = event.target.files[0].name;
+    this.length = event.target.files[0].length;
+    console.log(this.length)
 	  this.selectedFile2 = event.target.files[0];
 	  const reader = new FileReader();
 	  reader.onload = (e) => {

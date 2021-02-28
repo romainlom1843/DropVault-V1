@@ -2,10 +2,11 @@
    <!--The content below is only a placeholder and can be replaced.-->
    <header>
     <div class="content">
-       <img src="../favicon.ico" class="logo" alt="logo DV">
+       <img src="../assets/images/dropvault.ico" class="logo" alt="logo DV">
         <h1 class="titre1">
           <strong>{{title}}</strong>
         </h1>
+        
         
       </div>
       
@@ -17,15 +18,20 @@
                 <li routerLinkActive = "active"><a routerLink="share/" >Platform-Sharing</a></li>
                 
             </ul>
+            <form class="form-inline">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
         </div>
     
     </nav>
+    
    </header>
-
-  <p> Mis à jour : {{ lastUpdate | date }} </p>
+   
+   <router-outlet></router-outlet>
   
 
       
-      <router-outlet></router-outlet>
+     
 
    

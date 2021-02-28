@@ -1,33 +1,90 @@
-<div class="container">
-<h1 class="titre">Enregistrez vous !</h1>
+<br>
+<div>
+<h1 class="titre">Inscrivez-vous !</h1>
+<h6 class="titre2" routerLinkActive = "active"> ou <a routerLink="" >connectez-vous à votre compte</a>  </h6>
 </div>
+<br>
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
-          <label for="username">
-            Username
-          </label>
-          <input type="text" id="username" class="form-control" name="username" minlength="5" maxlength="45" ngModel required>
-        </div>
-        <div class="form-group">
-            <label for="email">
-              Email
-            </label>
-            <input type="email" id="email" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" ngModel required>
-        </div>
-        <div class="form-group">
-          <label for="password">
-            Password
-          </label>
+         
+            <input type="text" id="username" class="form-control form-control-lg" name="username" placeholder="Nom d'utilisateur" minlength="5" maxlength="45" ngModel required>  
+         
+          <br>
+            
+            <input type="email" id="email" class="form-control form-control-lg"  name="email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" ngModel required>
+        
+          <br>
+           
+            <input type="password" id="password" class="form-control form-control-lg" name="password" placeholder="Mot de passe" aria-describedby="passwordHelpBlock" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,45})$" ngModel required >
+            <small id="passwordHelpBlock" class="form-text text-muted">
+               8 à 45 caractères, une lettre capitale, au moins un chiffre et une lettre, et un caractère spécial.
+            </small>
+          <br>
 
-          <input type="password" id="password" class="form-control" name="password" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,45})$" ngModel required >
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                J'accepte les <a href="http://google.com"> conditions d'utilisation de DropVault</a>.
+            </label>
+          </div>
+          <br>
+          <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="2" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+              Je souhaite recevoir les informations marketing de DropVault.
+            </label>
+          </div>
         </div>
-        <div class="row2">
-        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
-        </div>
+          <br>
+          <div class="card">
+            <button type="submit" class="btn btn-primary btn-lg" [disabled]="f.invalid">S'inscrire</button>
+            </div>
+            <br>
+            <div class="card">
+              <button class="btn btn-dark btn-lg" >S'enregistrer avec Google</button>
+            </div>
+            
+          </div>
       </form>
     </div>
   </div>
+  <br>
+  <footer>
+    <br>
+    <div class="foot1">
+      <h3>DropVault</h3>
+      <h5>Sécurité</h5>
+      <h5>Fonctionnalités</h5>
+      <h5>Langues</h5>
+      <h5>Aide</h5>
+    
+    </div>
+    <div class="foot2">
+      <h3>Assistance</h3>
+      <h5>Centre d'assistance</h5>
+      <h5>Cookies</h5>
+      <h5>Confidentialité et conditions</h5>
+      <h5>Aide</h5>
+    
+    <br>
+    </div>
+    <div class="foot3">
+    <h3>Nous contacter</h3>
+    <h5>Facebook</h5>
+    <h5>Instagram</h5>
+    <h5>Twitter</h5>
+    <h5>Google</h5>
+    </div>
+    <div class="foot4">
+      <h3>A propos de</h3>
+      <h5>Médias</h5>
+      <h5>Forum</h5>
+      <h5>Blog</h5>
+      <h5>Parrainages</h5>
+      </div>
+    
+    </footer>
 
-  <h4 class="titre2" routerLinkActive = "active"> <a routerLink="" >Or Sign in here</a> </h4>

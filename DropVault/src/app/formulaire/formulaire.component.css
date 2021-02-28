@@ -1,21 +1,45 @@
 .row2
 {
     text-align: center;
+    
 }
-
+form{
+   padding-left: 40%;
+}
 .titre2
 {
     color: black;
-    text-align: center;
+    padding-left: 25%;
+    
 }
 .container
 {
     text-align: center;
-    
-    
-    
+      
 }
 .titre
 {
     font-weight: bold;
+    font-size: 150%;
+    padding-left: 25%;
+}
+footer{
+    background-image: url(../../assets/images/fond.png);
+
+}
+.foot1{
+    color: white;
+    float:left;
+}
+.foot2{
+    color: white;
+    
+    
+}
+.foot3{
+    color: white;
+    float:left;
+}
+.foot4{
+    color: white;
 }
