@@ -14,13 +14,15 @@ export class UploadFilesService {
   public res;
   contents
   token
+  type 
+  size
 
 
   constructor(private http: HttpClient, private authService: AuthentificationService) {
     this.token = this.authService.token
    }
 
-  upload( filename: String, result) {
+  upload( filename: String, result, length, type) {
   var username= this.authService.user
   console.log(username);
   console.log(this.token);
@@ -29,7 +31,7 @@ export class UploadFilesService {
   
    this.http
         .post('/stock/files', 
-        {"filename": filename, "username":username}, {headers})
+        {"filename": filename, "username":username, "sizing": `${length}`, "ext":type}, {headers})
         .subscribe(
           (response) => {
             id_c =response['id'];
@@ -59,6 +61,42 @@ export class UploadFilesService {
         }
      )
      return this.filename
+     
+  }
+  getSize():String[] {
+    var username= this.authService.user
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
+     this.http.get(`/stock/size/${username}`, {headers})
+     .subscribe(
+      (response) => {
+        
+        this.size = response;
+        
+        
+        },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+        }
+     )
+     return this.size
+     
+  }
+  getType():String[] {
+    var username= this.authService.user
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
+     this.http.get(`/stock/type/${username}`, {headers})
+     .subscribe(
+      (response) => {
+        
+        this.type = response;
+        
+        
+        },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+        }
+     )
+     return this.type
      
   }
 download(id : number){
@@ -98,7 +136,7 @@ get_id(filename : String):number{
   var username = this.authService.user
   const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
   this.http
-  .get(`/stock/file/${filename}`,{headers})
+  .get(`/stock/file/${username}/${filename}`,{headers})
   .subscribe(
       (response) => {
       

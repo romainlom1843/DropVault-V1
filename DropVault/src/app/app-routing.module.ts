@@ -7,6 +7,8 @@ import { ErrorComponent } from './error/error.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GuardService } from './Services/guard.service';
+import { EchangeComponent } from './echange/echange.component';
+import { StockageComponent } from './stockage/stockage.component';
 
 
 
@@ -14,9 +16,11 @@ import { GuardService } from './Services/guard.service';
 
 const routes: Routes = [
   {path : 'auth', component: FormulaireComponent},
-  {path : 'share', /*canActivate: [GuardService],*/ component : PlatformSharingComponent},
-  {path : 'accueil', /*canActivate: [GuardService],*/ component: AccueilComponent},
-  {path : '', component: SignInComponent },
+  {path : 'share', canActivate: [GuardService], component : EchangeComponent},
+  {path : '', component: AccueilComponent},
+  {path : 'login', component: SignInComponent },
+  {path : 'archive', canActivate: [GuardService], component: StockageComponent },
+  {path : 'upload', canActivate: [GuardService], component: PlatformSharingComponent },
   {path: 'not-found', component: ErrorComponent },
   {path: '**', redirectTo: 'not-found' }
 

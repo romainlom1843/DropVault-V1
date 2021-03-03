@@ -8,26 +8,6 @@
     float: left;
 }
 
-
-.pied
-{
-    position: absolute; top: 600px;
-}
-
-.facebook
-{
-    width: 40px;
-    float: right;
-}
-
-.instagram
-{
-    width: 40px;
-    float: right;
-}
-
-.snapchat
-{
-    width: 40px;
-    float: right;
+form{
+    padding-left: 20%;
 }

@@ -1,47 +1,74 @@
-
-<div>
+<br>
+<br>
+<h3 class="titre">Déposez vos fichiers</h3>
+<h6 class="titre2" routerLinkActive = "active">ou <a routerLink="/archive">accéder à votre espace de stockage</a></h6>
+<br>
+<div class="col-sm-8 col-sm-offset-2">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group">
     <label class="btn btn-default p-0">
-      <input type="file" name="fichier" id="fichier" (change)="keepFile($event)">
+      <input type="file" name="fichier" class="form-control" id="fichier" (change)="keepFile($event)" ngModel>
     </label>
-     	<label for="key">Key</label>
-  	<input type="text" name="key" id="key" (change)="keepKey($event)">
-    	<button class="btn btn-success btn-sm" (click)="chiffrement()">
-      	Upload
+  
+  	<input type="text" name="key" class="form-control" placeholder="Votre clef secrète" id="key" (change)="keepKey($event)" ngModel required>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+     La clef doit faire 32 caractères
+   </small>
+    <br>
+    <br>
+    <div class="card ">
+      <button type="submit" class="btn btn-success btn-lg" [disabled]="f.invalid" (click)="chiffrement()">
+      Upload
     	</button>
+    </div>
+    <br>
+    <br>
+  </div>
+</form>
 </div>
 
 
-<div class="card mt-3">
-  <button class="btn btn-warning" (click)="getfiles()"> List files</button>
-</div>
+<footer>
+  <br>
+  <div class="foot1">
+    <h3>DropVault</h3>
+    <h5>Sécurité</h5>
+    <h5>Fonctionnalités</h5>
+    <h5>Langues</h5>
+    <h5>Aide</h5>
   
+  </div>
+  <div class="foot2">
+    <h3>Assistance</h3>
+    <h5>Centre d'assistance</h5>
+    <h5>Cookies</h5>
+    <h5>Confidentialité et conditions</h5>
+    <h5>Aide</h5>
   
+  <br>
+  </div>
+  <div class="foot3">
+  <h3>Nous contacter</h3>
+  <h5>Facebook</h5>
+  <h5>Instagram</h5>
+  <h5>Twitter</h5>
+  <h5>Google</h5>
+  </div>
+  <div class="foot4">
+    <h3>A propos de</h3>
+    <h5>Médias</h5>
+    <h5>Forum</h5>
+    <h5>Blog</h5>
+    <h5>Parrainages</h5>
+    </div>
   
-  
-  <div class="card-header">
-    <ul class="list-group list-group-flush"> 
-    <li class="list-group-item" *ngFor="let name of listFile ">
-    <label for="key" >Key</label>
-    <input type="text" name="key" id="key" (change)="keepKey2($event)">
-    <a (click)="download(name)">{{name}}</a>
-    <button type="submit" class="btn btn-danger" (click)= "onDelete(name)">Supprimer</button>
-    </li>
-    </ul>
-</div>
+  </footer>
 
 
-<div>
-  <label class="btn btn-default p-0">
-    <input type="file" name="fichier2" id="fichier2" (change)="keepFile2($event)">
-  </label>
-     <label for="key2">Key</label>
-  <input type="text" name="key3" id="key3" (change)="keepKey3($event)">
-  <label for="user">Username</label>
-  <input type="text" name="user" id="user" (change)="keepUser($event)">
-    <button class="btn btn-primary btn-sm" (click)="chiffrement_echange()">
-      Echange
-    </button>
-</div>
+  
+ 
+
+
 
   
 

@@ -1,11 +1,7 @@
-.row
-{
-    text-align: center;
-}
-form{
+.card{
     padding-left: 40%;
- }
- .titre2
+}
+.titre2
 {
     color: black;
     padding-left: 27%;
@@ -22,7 +18,7 @@ form{
     font-size: 150%;
     padding-left: 27%;
 }
- footer{
+footer{
     background-image: url(../../assets/images/fond.png);
 
 }

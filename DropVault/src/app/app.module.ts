@@ -11,7 +11,10 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { FormsModule } from '@angular/forms';
 import { AuthentificationService } from './Services/authentification.service';
 import { ErrorComponent } from './error/error.component';
-import { GuardService } from './Services/guard.service'
+import { GuardService } from './Services/guard.service';
+import { EchangeComponent } from './echange/echange.component';
+import { StockageComponent } from './stockage/stockage.component'
+
 
 
 
@@ -23,6 +26,9 @@ import { GuardService } from './Services/guard.service'
     AccueilComponent,
     SignInComponent,
     ErrorComponent,
+    EchangeComponent,
+    StockageComponent,
+    
   
   ],
   imports: [

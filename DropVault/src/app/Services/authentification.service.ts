@@ -16,6 +16,7 @@ export class AuthentificationService {
       
         const username = form.value['username']
         this.user = username;
+        console.log(this.user)
         const password = form.value['password']
         const headers = { 'Content-Type': 'application/json'}
         
@@ -27,7 +28,7 @@ export class AuthentificationService {
           console.log(this.token);  
           console.log('Utilisateur connecté !');  
           this.authStatus = true;
-          this.router.navigate(['accueil/']);
+          this.router.navigate(['upload/']);
           },
         (error) => {
           console.log('Erreur ! : ' + error);
@@ -57,7 +58,7 @@ export class AuthentificationService {
             console.log('Erreur ! : ' + error);
             }
         );
-        this.router.navigate([''])
+        this.router.navigate(['login'])
 
   }
 
