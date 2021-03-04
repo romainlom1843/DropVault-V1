@@ -35,7 +35,7 @@ export class EchangeComponent implements OnInit {
     rust.then( res => {
       var result = res.encrypt(this.text2, this.key3);
       console.log(result);
-      this.uploadService.echange(result, this.filename2, this.user);
+      this.uploadService.echange(result, this.filename2, this.user, this.length, this.type);
      });
 }
 keepKey3(event:any){

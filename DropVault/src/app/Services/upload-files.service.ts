@@ -199,12 +199,12 @@ download_content(id):string{
   return this.contents
 
 }
-echange(content, filename :string, user : string){
+echange(content, filename :string, user : string, length, type){
   const headers = { 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}`}
   
    this.http
         .post('/stock/echange', 
-        {"filename": filename, "content": content, "username":user}, {headers})
+        {"filename": filename, "content": content, "username":user,  "sizing": `${length}`, "ext":type}, {headers})
         .subscribe(
           () => {
  

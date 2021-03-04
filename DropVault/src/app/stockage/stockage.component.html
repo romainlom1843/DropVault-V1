@@ -3,7 +3,7 @@
 <h3 class="titre">Listez vos fichiers</h3>
 <h6 class="titre2" routerLinkActive = "active">ou <a routerLink="/upload">accéder à votre espace de dépot</a></h6>
 <br>
-<div class="col-sm-8 col-sm-offset-2">
+<div class="container">
     <div class="card">
       <button class="btn btn-warning btn-lg" (click)="getfiles()">List files</button>
     </div>
@@ -20,16 +20,58 @@
       <th scope="col">Type</th>
       <th scope="col">Taille</th>
       <th scope="col"> </th>
-    </tr>
+      </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let name of listFile; let type of listType; let size of listSize">
-    <th>1</th>
+    <tr *ngFor="let name of listFile">
+    <th><img src="../../assets/images/fichier.png"></th>
     <td ><a (click)="download(name)" >{{name}} </a></td> 
     <td><input type="text" name="key" id="key" placeholder="Insérez la clef" (change)="keepKey2($event)"></td>
-    <td>{{type}}</td>
-    <td>{{size}} octets</td>
+    <td *ngFor="let type of listType">{{type}}</td>
+    <td *ngFor="let size of listSize">{{size}} octets</td>
     <td><button type="submit" class="btn btn-danger" (click)= "onDelete(name)">Supprimer</button></td>
     </tr>
   </tbody>
 </table>
+<br>
+<br>
+<footer>
+  <br>
+  <br>
+  <div class="container">
+  <div class="foot1">
+    <h3>DropVault</h3>
+    <h5>Sécurité</h5>
+    <h5>Fonctionnalités</h5>
+    <h5>Langues</h5>
+    <h5>Aide</h5>
+  
+  </div>
+  <div class="foot2">
+    <h3>Assistance</h3>
+    <h5>Centre d'assistance</h5>
+    <h5>Cookies</h5>
+    <h5>Confidentialité et conditions</h5>
+    <h5>Aide</h5>
+ 
+  <br>
+  </div>
+</div>
+<div class="container">
+  <div class="foot3">
+  <h3>Nous contacter</h3>
+  <h5>Facebook</h5>
+  <h5>Instagram</h5>
+  <h5>Twitter</h5>
+  <h5>Google</h5>
+  </div>
+  <div class="foot4">
+    <h3>A propos de</h3>
+    <h5>Médias</h5>
+    <h5>Forum</h5>
+    <h5>Blog</h5>
+    <h5>Parrainages</h5>
+    </div>
+  </div>
+  </footer>
+
