@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { UploadFilesService } from '../Services/upload-files.service';
 import { AuthentificationService } from '../Services/authentification.service'
 import { NgForm } from '@angular/forms';
+import { StockageService } from '../Services/stockage.service';
 
 
 const rust = import("../../../wasm/pkg");
@@ -21,10 +22,11 @@ export class PlatformSharingComponent implements OnInit {
   text
   length
   type
-  tab: any[]
- 
+  tab
+  id
+  i=0
 
-  constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService ) { }
+  constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService,  private stockService: StockageService ) { }
 
   ngOnInit(): void {   
   }
@@ -50,16 +52,10 @@ export class PlatformSharingComponent implements OnInit {
       
         if(this.length>100000)
         {
-          /*var chunk = this.length/10000
-          for(var i=0; i< chunk; i++){
-              const reader = new FileReader();
-              reader.onload = (e) => {
-                this.text = reader.result.toString().trim();
-                console.log(this.text.slice(10000*i, 10000*(i+1)))
-                
-              }
-              reader.readAsBinaryString(this.selectedFile);         
-        }*/
+          this.uploadService.upload_big(this.filename,this.length, this.type)
+          this.id = this.stockService.get_id(this.filename)
+          this.chunk_file(this.i)  
+        
       }
        else{
           const reader = new FileReader();
@@ -79,20 +75,48 @@ export class PlatformSharingComponent implements OnInit {
   }
 
   chiffrement(){
-    
+    if(this.length <100000)
+    {
 	    rust.then( res => {
 	      var result = res.encrypt(this.text, this.key1);
 	      this.uploadService.upload(this.filename, result, this.length, this.type); 
-  
+      
 	     });
+    }
+    else{
+      
+      this.chunk(this.tab)
+    }
   }
   chunk(slice){
     
     rust.then( res => {
       var result = res.encrypt(slice, this.key1);
-      this.uploadService.upload(this.filename, result, this.length, this.type); 
+      console.log(result)
+      this.id=this.stockService.get_id(this.filename)
+      console.log(this.id)
+      this.uploadService.upload_file(result, this.id); 
+      while(this.i<2){
+        this.i= this.i+1
+        console.log(this.i)
+        this.chunk_file(this.i)
+        this.chunk(this.tab)
+
+      }
 
      });
+  }
+  chunk_file(i){
+    
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.text = reader.result.toString().trim();
+          this.tab=this.text.slice(20*i, 40*(i+1))
+          console.log(this.tab)
+         
+        }
+        reader.readAsBinaryString(this.selectedFile);       
   }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { AuthentificationService } from '../Services/authentification.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class UploadFilesService {
   size
 
 
-  constructor(private http: HttpClient, private authService: AuthentificationService) {
+  constructor(private http: HttpClient, private authService: AuthentificationService, private router:Router) {
     this.token = this.authService.token
    }
 
@@ -46,110 +47,6 @@ export class UploadFilesService {
   
   }
 
-  getFiles():String[] {
-    var username= this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
-     this.http.get(`/stock/files/${username}`, {headers})
-     .subscribe(
-      (response) => {
-        
-        this.filename = response;
-        
-        },
-      (error) => {
-        console.log('Erreur ! : ' + error);
-        }
-     )
-     return this.filename
-     
-  }
-  getSize():String[] {
-    var username= this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
-     this.http.get(`/stock/size/${username}`, {headers})
-     .subscribe(
-      (response) => {
-        
-        this.size = response;
-        
-        
-        },
-      (error) => {
-        console.log('Erreur ! : ' + error);
-        }
-     )
-     return this.size
-     
-  }
-  getType():String[] {
-    var username= this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
-     this.http.get(`/stock/type/${username}`, {headers})
-     .subscribe(
-      (response) => {
-        
-        this.type = response;
-        
-        
-        },
-      (error) => {
-        console.log('Erreur ! : ' + error);
-        }
-     )
-     return this.type
-     
-  }
-download(id : number){
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
-    this.http
-  .get(`/stock/download/${id}`,{headers})
-  .subscribe(
-      () => {
-      console.log('Fichier téléchargé'); 
-      
-      this.content = this.download_content(id);
-     
-      },
-    (error) => {
-      console.log('Erreur ! : ' + error);
-      }
-    );
-    return this.content
-   
-  }
-  deleteFiles(id : number) {
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
-    this.http
-  .delete(`/stock/files/${id}`,{headers})
-  .subscribe(
-      () => {
-      console.log('Fichier supprimé'); 
-      this.delete_content(id)
-      },
-    (error) => {
-      console.log('Erreur ! : ' + error);
-      }
-    );
-
-}
-get_id(filename : String):number{
-  var username = this.authService.user
-  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
-  this.http
-  .get(`/stock/file/${username}/${filename}`,{headers})
-  .subscribe(
-      (response) => {
-      
-      this.res = response;
-      },
-    (error) => {
-      console.log('Erreur ! : ' + error);
-      }
-    );
-
-    return this.res;
-
-}
 upload_file(content, id_c:number){
   const headers = { 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}`}
    this.http
@@ -157,48 +54,18 @@ upload_file(content, id_c:number){
         {"content": content, "id_c":id_c}, {headers})
         .subscribe(
           () => {
- 
-            this.getFiles();
+
             },
           (error) => {
-            console.log('Erreur ! : ' + error);
+            alert("Votre fichier a été téléversé sur la plateforme")
+            this.router.navigate(['/archive']);
             }
         );
 
 
 }
 
-delete_content(id){
-  const headers = { 'Authorization': `Bearer ${this.token}`}
-  this.http
-.delete(`/stock/remove/${id}`,{headers})
-.subscribe(
-    () => {
-    console.log('Fichier supprimé'); 
-    
-    },
-  (error) => {
-    console.log('Erreur ! : ' + error);
-    }
-  );
 
-}
-download_content(id):string{
-  const headers = { 'Content-type':'application/json','Authorization': `Bearer ${this.token}`}
-  this.http
-.get(`/stock/dwl/${id}`,{headers, responseType:'text'})
-.subscribe(
-    (response ) => {
-    this.contents = response
-    
-    },
-  (error) => {
-    console.log('Erreur ! : ' + error);
-    }
-  );
-  return this.contents
-
-}
 echange(content, filename :string, user : string, length, type){
   const headers = { 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}`}
   
@@ -208,7 +75,6 @@ echange(content, filename :string, user : string, length, type){
         .subscribe(
           () => {
  
-            this.getFiles();
             },
           (error) => {
             console.log('Erreur ! : ' + error);
@@ -216,5 +82,55 @@ echange(content, filename :string, user : string, length, type){
         );
 
 
+  }
+
+upload_chunk( filename: String, result, length, type) {
+  var username= this.authService.user
+  console.log(username);
+  console.log(this.token);
+  var id_c
+  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
+  
+   this.http
+        .post('/stock/files', 
+        {"filename": filename, "username":username, "sizing": `${length}`, "ext":type}, {headers})
+        .subscribe(
+          (response) => {
+            id_c =response['id'];
+            this.upload_file(result, id_c)
+           
+            },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+            }
+        );
+        
+  
+  }
+
+
+
+upload_big( filename: String,  length, type) {
+  var username= this.authService.user
+  console.log(username);
+  console.log(this.token);
+  var id_c
+  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}`}
+  
+   this.http
+        .post('/stock/files', 
+        {"filename": filename, "username":username, "sizing": `${length}`, "ext":type}, {headers})
+        .subscribe(
+          (response) => {
+            
+            
+           
+            },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+            }
+        );
+        
+  
   }
 }
