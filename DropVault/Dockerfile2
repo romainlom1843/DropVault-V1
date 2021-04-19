@@ -1,0 +1,27 @@
+### On install rust et wasm  ###
+FROM rust:buster
+
+#Installer wasm
+WORKDIR ./wasm
+RUN apt install pkg-config
+RUN cargo install wasm-pack
+COPY ./wasm/Cargo.toml .
+#COPY ./wasm/Cargo.lock .
+COPY ./wasm/src ./src
+RUN wasm-pack build
+
+###On Build Node ###
+FROM node:12.7-alpine AS build
+
+WORKDIR ../src/app
+COPY package.json package-lock.json ./
+RUN npm install -f
+RUN npm install --save-dev @angular-devkit/build-angular
+COPY . .
+RUN npm run build
+
+
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build ./src/app/dist/DropVault /usr/share/nginx/html

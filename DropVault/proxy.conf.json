@@ -1,6 +1,6 @@
 {
   "/prox/*": {
-      "target": "http://127.0.0.1:8080",
+      "target": "http://dropvault-auth:8080",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,
@@ -10,7 +10,7 @@
   },
 
   "/stock/*": {
-    "target": "http://localhost:8084",
+    "target": "http://dropvault-stock:8084",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
