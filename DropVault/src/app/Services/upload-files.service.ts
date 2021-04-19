@@ -48,10 +48,14 @@ export class UploadFilesService {
   }
 
   upload_file(content, id_c: number) {
+    console.log(content);
     const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+   // const formData : FormData = new FormData();
+   // formData.append('content', content);
+   // console.log(content);
+    //console.log(formData);
     this.http
-      .post(`/stock/upload/${id_c}`,
-        { "content": content }, { headers })
+      .post(`/stock/upload/${id_c}`,{"content": `${content}`}/*, formData,*/, { headers })
       .subscribe(
         () => {
 
@@ -84,53 +88,4 @@ export class UploadFilesService {
 
   }
 
-  upload_chunk(filename: String, result, length, type) {
-    var username = this.authService.user
-    console.log(username);
-    console.log(this.token);
-    var id_c
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
-
-    this.http
-      .post('/stock/files',
-        { "filename": filename, "username": username, "sizing": `${length}`, "ext": type }, { headers })
-      .subscribe(
-        (response) => {
-          id_c = response['id'];
-          this.upload_file(result, id_c)
-
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
-
-
-  }
-
-
-
-  upload_big(filename: String, length, type) {
-    var username = this.authService.user
-    console.log(username);
-    console.log(this.token);
-    var id_c
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
-
-    this.http
-      .post('/stock/files',
-        { "filename": filename, "username": username, "sizing": `${length}`, "ext": type }, { headers })
-      .subscribe(
-        (response) => {
-
-
-
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
-
-
-  }
 }
