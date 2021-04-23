@@ -68,12 +68,16 @@ export class PlatformSharingComponent implements OnInit {
   }
 
   chiffrement(){
+    
     if(this.length <5000000)
     {
 	    rust.then( res => {
 	      var result = res.encrypt(this.text, this.key1);
-	      this.uploadService.upload(this.filename, result, this.length, this.type); 
-      
+        console.log(result);
+        console.log(this.authService.passwd.slice(51,83))
+        var result2 = res.encrypt(this.key1, this.authService.passwd.slice(51,83))
+        console.log(result2);
+	      this.uploadService.upload(this.filename, result,result2, this.length, this.type);       
 	     });
     }
   

@@ -23,7 +23,7 @@ export class UploadFilesService {
     this.token = this.authService.token
   }
 
-  upload(filename: String, result, length, type) {
+  upload(filename: String, result,result2, length, type) {
     var username = this.authService.user
     console.log(username);
     console.log(this.token);
@@ -36,7 +36,7 @@ export class UploadFilesService {
       .subscribe(
         (response) => {
           id_c = response['id'];
-          this.upload_file(result, id_c)
+          this.upload_file(result, result2, id_c)
 
         },
         (error) => {
@@ -47,7 +47,7 @@ export class UploadFilesService {
 
   }
 
-  upload_file(content, id_c: number) {
+  upload_file(content, key, id_c: number) {
     console.log(content);
     const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
    // const formData : FormData = new FormData();
@@ -55,7 +55,7 @@ export class UploadFilesService {
    // console.log(content);
     //console.log(formData);
     this.http
-      .post(`/stock/upload/${id_c}`,{"content": `${content}`}/*, formData,*/, { headers })
+      .post(`/stock/upload/${id_c}`,{"content": `${content}`, "key":`${key}`}/*, formData,*/, { headers })
       .subscribe(
         () => {
 

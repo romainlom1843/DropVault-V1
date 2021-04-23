@@ -1,10 +1,9 @@
 use aes_gcm::Aes256Gcm; // Or `Aes128Gcm`
 use aes_gcm::aead::{Aead, NewAead, generic_array::GenericArray};
 
-
-
-
 use wasm_bindgen::prelude::*;
+
+
 
 
 #[wasm_bindgen]
@@ -19,6 +18,7 @@ pub fn encrypt(contents: String, key: String) -> String {
     	
     
 }
+
 #[wasm_bindgen]
 pub fn decrypt(ciphertext: String, key: String) -> String {
 	let key = GenericArray::from_slice(key.as_bytes());

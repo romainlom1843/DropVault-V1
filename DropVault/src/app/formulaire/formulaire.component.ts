@@ -20,6 +20,8 @@ export class FormulaireComponent implements OnInit {
   }
   onSubmit(form: NgForm){
     this.authservice.signUp(form);
+    this.authservice.KeyDerivation(form);
+    
 
 
   /*console.log(form.value)

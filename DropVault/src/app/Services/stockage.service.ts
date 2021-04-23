@@ -85,6 +85,12 @@ export class StockageService {
     return this.http
       .get(`/stock/dwl/${id}`, { headers, responseType: 'text' })
   }
+  //download key
+  download_key(id) {
+    const headers = { 'Content-type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    return this.http
+      .get(`/stock/key/${id}`, { headers, responseType: 'text' })
+  }
   //get type info
   getType() {
     var username = this.authService.user

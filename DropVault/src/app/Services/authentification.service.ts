@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class AuthentificationService {
 
     token  
+    passwd
     public user = String;
     authStatus = false;
     constructor( private router: Router, private HttpClient: HttpClient){}
@@ -61,5 +62,30 @@ export class AuthentificationService {
         this.router.navigate(['login'])
 
   }
+  KeyDerivation(form:NgForm) {
+      
+      
+    const password = form.value['password']
+
+    const headers = { 'Content-Type': 'application/json'}
+    
+  this.HttpClient
+  .post('/prox/passwd', { "passwd":password}, {headers})
+  .subscribe(
+      (response) => {
+      this.passwd = response;
+      console.log(this.passwd);  
+      console.log('Password created!');  
+      
+     
+      },
+    (error) => {
+    
+      console.log('Erreur ! : ' + error);
+
+      }
+    );
+
+}
 
 }
