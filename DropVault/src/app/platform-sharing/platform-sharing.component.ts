@@ -24,7 +24,7 @@ export class PlatformSharingComponent implements OnInit {
   type
   tab
   id
-  i=0
+ 
 
   constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService,  private stockService: StockageService ) { }
 

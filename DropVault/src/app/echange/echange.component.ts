@@ -15,44 +15,64 @@ const rust = import("../../../wasm/pkg");
 
 
 export class EchangeComponent implements OnInit {
-  filename2 
-  selectedFile2 
-  text2
+  filename
+  selectedFile
+  text
   user
   length
   type
-  key3
- 
+  key
+
   constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService) { }
 
   ngOnInit(): void {
   }
-  onSubmit(form:NgForm){
-    
+  onSubmit(form: NgForm) {
+
   }
-  chiffrement_echange(){
-    
-    rust.then( res => {
-      var result = res.encrypt(this.text2, this.key3);
-      console.log(result);
-      this.uploadService.echange(result, this.filename2, this.user, this.length, this.type);
-     });
-}
-keepKey3(event:any){
-  this.key3 = event.target.value;
-}
-keepUser(event:any){
-  this.user =event.target.value;
-}
-keepFile2(event:any){
-  this.filename2 = event.target.files[0].name;
-  this.length = event.target.files[0].length;
-  console.log(this.length)
-  this.selectedFile2 = event.target.files[0];
-  const reader = new FileReader();
-  reader.onload = (e) => {
-  this.text2 = reader.result.toString().trim();
+  chiffrement_echange() {
+
+    if(this.length <5000000)
+    {
+	    rust.then( res => {
+        console.log(this.text)
+        console.log(this.key)
+	      var result = res.encrypt(this.text, this.key);
+        console.log(result);
+        
+        var result2 = res.diffie_hellman(this.key)
+        console.log(result2);
+	      this.uploadService.echange( result,result2, this.filename,this.user, this.length, this.type);       
+	     });
+    }
   }
-  reader.readAsText(this.selectedFile2);
-}
+  keepKey3(event: any) {
+    this.key = event.target.value;
+  }
+  keepUser(event: any) {
+    this.user = event.target.value;
+  }
+  keepFile2(event: any) {
+    this.filename = event.target.files[0].name;
+    this.length = event.target.files[0].size;
+    this.type = event.target.files[0].type;
+    this.selectedFile = event.target.files[0];
+
+
+    var accept = {
+      binary: ["image/png", "image/jpeg"],
+      text: ["text/plain", "text/css", "application/xml", "text/html"]
+    };
+
+    if (this.length < 5000000) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.text = reader.result.toString().trim();
+      }
+      reader.readAsText(this.selectedFile);
+    }
+    else {
+      alert("Votre fichier est trop grand");
+    }
+  }
 }

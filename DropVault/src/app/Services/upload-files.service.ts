@@ -70,14 +70,16 @@ export class UploadFilesService {
   }
 
 
-  echange(content, filename: string, user: string, length, type) {
+  echange(content,key, filename: string, user: string, length, type) {
     const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
-
+    var id_p
     this.http
       .post('/stock/echange',
         { "filename": filename, "content": content, "username": user, "sizing": `${length}`, "ext": type }, { headers })
       .subscribe(
-        () => {
+        (response) => {
+          id_p = response['id'];
+          this.exchange_file(content, key, id_p)
 
         },
         (error) => {
@@ -85,6 +87,26 @@ export class UploadFilesService {
         }
       );
 
+
+  }
+  exchange_file(content , key, id_p){
+
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+   // const formData : FormData = new FormData();
+   // formData.append('content', content);
+   // console.log(content);
+    //console.log(formData);
+    this.http
+      .post(`/stock/exchange/${id_p}`,{"content": `${content}`, "key":`${key}`}/*, formData,*/, { headers })
+      .subscribe(
+        () => {
+
+        },
+        (error) => {
+          alert("Votre fichier a été échangé avec un autre utilisateur")
+          this.router.navigate(['/archive']);
+        }
+      );
 
   }
 

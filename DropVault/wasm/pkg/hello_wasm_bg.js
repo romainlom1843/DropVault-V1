@@ -64,6 +64,14 @@ function passStringToWasm0(arg, malloc, realloc) {
     WASM_VECTOR_LEN = offset;
     return ptr;
 }
+/**
+* @param {string} key
+*/
+export function diffie_hellman(key) {
+    var ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len0 = WASM_VECTOR_LEN;
+    wasm.diffie_hellman(ptr0, len0);
+}
 
 let cachegetInt32Memory0 = null;
 function getInt32Memory0() {
