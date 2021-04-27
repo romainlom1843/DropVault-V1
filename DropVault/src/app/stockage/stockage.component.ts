@@ -32,6 +32,12 @@ export class StockageComponent implements OnInit {
     this.stockService.getSize().subscribe((response) => this.listSize = response);
     this.stockService.getType().subscribe((response) => this.listType = response);
   }
+  actualise(){
+    this.stockService.getFiles().subscribe((response) => this.listFile = response);
+    this.stockService.getSize().subscribe((response) => this.listSize = response);
+    this.stockService.getType().subscribe((response) => this.listType = response);
+
+  }
 
   download(name: string) {
 

@@ -1,3 +1,8 @@
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <br>
 <br>
 <h3 class="titre">Listez vos fichiers</h3>
@@ -5,13 +10,12 @@
 <br>
 
 
-
+<button class="btn-secondary" (click)="actualise()">Actualiser</button>
 <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Clef</th>
+      <th scope="col">Nom</th>     
       <th scope="col">Type</th>
       <th scope="col">Taille</th>
       <th scope="col"> </th>
@@ -20,8 +24,7 @@
   <tbody>
     <tr *ngFor="let name of listFile">
       <th><img src="../../assets/images/fichier.png"></th>
-      <td><a (click)="download(name)">{{name}} </a></td>
-      <td><input type="text" name="key" id="key" placeholder="Insérez la clef" (change)="keepKey2($event)"></td>
+      <td><button class="btn" (click)="download(name)"><i class="fa fa-download"></i> {{name}} </button></td>
       <td *ngFor="let type of listType">{{type}}</td>
       <td *ngFor="let size of listSize">{{size}} octets</td>
       <td><button type="submit" class="btn btn-danger" (click)="onDelete(name)">Supprimer</button></td>
