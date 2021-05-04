@@ -1,6 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {string} passwd
+* @returns {string}
+*/
+export function derive_passwd(passwd: string): string;
+/**
+* @param {string} passwd
+* @returns {string}
+*/
+export function derive_key(passwd: string): string;
+/**
 * @param {string} key
 */
 export function diffie_hellman(key: string): void;

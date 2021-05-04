@@ -68,7 +68,6 @@ export class StockageService {
       .subscribe(
         () => {
           console.log('Fichier téléchargé');
-
           this.content = this.download_content(id);
 
         },

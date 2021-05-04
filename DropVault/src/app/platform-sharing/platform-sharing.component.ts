@@ -53,7 +53,7 @@ export class PlatformSharingComponent implements OnInit {
       
           const reader = new FileReader();
             reader.onload = (e) => {
-            this.text = reader.result.toString().trim();
+            this.text = reader.result.toString().trim();//binary 
             console.log(this.text)
             }
             reader.readAsText(this.selectedFile);
