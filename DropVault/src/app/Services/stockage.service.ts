@@ -28,7 +28,13 @@ export class StockageService {
     return this.http
       .get(`/stock/file/${username}/${filename}`, { headers });
   }
-
+ //get type
+ get_type(filename: String) {
+  var username = this.authService.user
+  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+  return this.http
+    .get(`/stock/ext/${filename}`, { headers });
+}
   //delete a file by id
   deleteFiles(id) {
     const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }

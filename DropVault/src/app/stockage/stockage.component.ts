@@ -3,7 +3,6 @@ import { AuthentificationService } from '../Services/authentification.service';
 import { UploadFilesService } from '../Services/upload-files.service';
 import { HttpClient } from '@angular/common/http'
 import { StockageService } from '../Services/stockage.service';
-import { identity } from 'rxjs';
 
 
 const rust = import("../../../wasm/pkg");
@@ -88,12 +87,15 @@ export class StockageComponent implements OnInit {
         //console.log(i)
         //console.log(content.slice(5120* i, 5120 * (i + 1)))
         console.log(this.result)
-        var result2 = res.decrypt(content/*.slice(5120 * i, 5120* (i + 1))*/, this.result);
+        var result2 = res.decrypt_bin(content/*.slice(5120 * i, 5120* (i + 1))*/, this.result);
         console.log(result2)
         //this.resulttot.concat(result2)
        // console.log(this.resulttot)
      // }
-      this.downloadToFile(result2, filename, 'text/plain')// modify 
+   
+     console.log(filename)
+     this.stockService.get_type(filename).subscribe( type => 
+      this.downloadToFile(result2, filename, type))// modify 
     });
 
 

@@ -3,6 +3,7 @@ import { AuthentificationService } from '../Services/authentification.service';
 import { UploadFilesService } from '../Services/upload-files.service';
 import { HttpClient } from '@angular/common/http'
 import { NgForm } from '@angular/forms';
+import { StockageService } from '../Services/stockage.service';
 
 const rust = import("../../../wasm/pkg");
 @Injectable()
@@ -21,58 +22,39 @@ export class EchangeComponent implements OnInit {
   user
   length
   type
-  key
+  key_decrypt
 
-  constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService) { }
+  constructor(private uploadService: UploadFilesService, private stockService: StockageService, private HttpClient: HttpClient, private authService: AuthentificationService) { }
 
   ngOnInit(): void {
   }
   onSubmit(form: NgForm) {
 
   }
-  chiffrement_echange() {
+ echange() {
 
-    if(this.length <5000000)
-    {
+    this.key_decrypt =this.stockService.get_id(this.filename).subscribe(
+      id => this.stockService.download_key(id)
+    )
+   
 	    rust.then( res => {
-        console.log(this.text)
-        console.log(this.key)
-	      var result = res.encrypt(this.text, this.key);
-        console.log(result);
-        
-        var result2 = res.diffie_hellman(this.key)
-        console.log(result2);
-	      this.uploadService.echange( result,result2, this.filename,this.user, this.length, this.type);       
+
+	      var result = res.decrypt(this.key_decrypt, this.authService.hash_pass.slice(40,72));
+        console.log(result);       
+        var result2 = res.diffie_hellman(result)
+        console.log(result2)
+ 
+	     
 	     });
-    }
+    
   }
-  keepKey3(event: any) {
-    this.key = event.target.value;
-  }
+
   keepUser(event: any) {
     this.user = event.target.value;
   }
-  keepFile2(event: any) {
-    this.filename = event.target.files[0].name;
-    this.length = event.target.files[0].size;
-    this.type = event.target.files[0].type;
-    this.selectedFile = event.target.files[0];
-
-
-    var accept = {
-      binary: ["image/png", "image/jpeg"],
-      text: ["text/plain", "text/css", "application/xml", "text/html"]
-    };
-
-    if (this.length < 5000000) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.text = reader.result.toString().trim();
-      }
-      reader.readAsText(this.selectedFile);
-    }
-    else {
-      alert("Votre fichier est trop grand");
-    }
+  keepFilename(event: any) {
+    this.filename = event.target.value;
   }
+ 
+ 
 }

@@ -51,13 +51,13 @@ export class PlatformSharingComponent implements OnInit {
     {
   
       
-          const reader = new FileReader();
+          var reader = new FileReader();
             reader.onload = (e) => {
-            this.text = reader.result.toString().trim();//binary 
+           var data=  reader.result;//binary 
+           this.text = new Int8Array(data)
             console.log(this.text)
             }
-            reader.readAsText(this.selectedFile);
-        
+            reader.readAsArrayBuffer(this.selectedFile);   
     }
     else {
       alert("Votre fichier est trop grand");
@@ -72,7 +72,7 @@ export class PlatformSharingComponent implements OnInit {
     if(this.length <5000000)
     {
 	    rust.then( res => {
-	      var result = res.encrypt(this.text, this.key1);
+	      var result = res.encrypt_bin(this.text, this.key1);
         console.log(result);
         console.log(this.authService.passwd.slice(51,83))
         var result2 = res.encrypt(this.key1, this.authService.passwd.slice(51,83))

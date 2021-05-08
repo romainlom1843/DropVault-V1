@@ -1,71 +1,71 @@
 <br>
 <br>
 <h3 class="titre">Echangez vos fichiers</h3>
-<h6 class="titre2" routerLinkActive = "active">ou <a routerLink="/archive">accéder à votre espace de stockage</a></h6>
+<h6 class="titre2" routerLinkActive="active">ou <a routerLink="/archive">accéder à votre espace de stockage</a></h6>
 <br>
 <div class="col-sm-8 col-sm-offset-2">
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-  <div class="form-group">
-    <label class="btn btn-default p-0">
-      <input type="file" name="fichier2" class="form-control" id="fichier2" (change)="keepFile2($event)" ngModel>
-    </label>
-    <input type="text" name="user" id="user" class="form-control" placeholder="Nom d'utilisateur" (change)="keepUser($event)">
-    <small id="passwordHelpBlock" class="form-text text-muted">
-    Le nom d'utilisateur de la personne pour echanger le fichier
-    </small>
-  	<input type="text" name="key3" class="form-control" placeholder="Votre clef secrète" id="key3" (change)="keepKey3($event)" ngModel required>
-    <small id="passwordHelpBlock" class="form-text text-muted">
-    La clef doit faire 32 caractères
-   </small>
-    <br>
-    <br>
-    <div class="card ">
-      <button type="submit" class="btn btn-primary btn-lg" [disabled]="f.invalid" (click)="chiffrement_echange()">
-    Echange
-    	</button>
+  <form>
+    <div class="form-group">
+      <input type="text" name="filename" id="filename" class="form-control" placeholder="Nom du fichier"
+        (change)="keepFilename($event)">
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Le nom du fichier à echanger
+      </small>
+
+      <input type="text" name="user" id="user" class="form-control" placeholder="Nom d'utilisateur"
+        (change)="keepUser($event)">
+      
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Le nom d'utilisateur de la personne pour echanger le fichier
+      </small>
+      <br>
+      <br>
+      <div class="card ">
+        <button type="submit" class="btn btn-primary btn-lg"  (click)="echange()">
+          Créer un lien de téléchargement
+        </button>
+      </div>
+      <br>
+      <br>
     </div>
-    <br>
-    <br>
-  </div>
-</form>
+  </form>
 </div>
 <footer>
   <br>
   <br>
   <div class="container">
-  <div class="foot1">
-    <h3>DropVault</h3>
-    <h5>Sécurité</h5>
-    <h5>Fonctionnalités</h5>
-    <h5>Langues</h5>
-    <h5>Aide</h5>
-  
-  </div>
-  <div class="foot2">
-    <h3>Assistance</h3>
-    <h5>Centre d'assistance</h5>
-    <h5>Cookies</h5>
-    <h5>Confidentialité et conditions</h5>
-    <h5>Aide</h5>
- 
-  <br>
-  </div>
-</div>
-<div class="container">
-  <div class="foot3">
-  <h3>Nous contacter</h3>
-  <h5>Facebook</h5>
-  <h5>Instagram</h5>
-  <h5>Twitter</h5>
-  <h5>Google</h5>
-  </div>
-  <div class="foot4">
-    <h3>A propos de</h3>
-    <h5>Médias</h5>
-    <h5>Forum</h5>
-    <h5>Blog</h5>
-    <h5>Parrainages</h5>
+    <div class="foot1">
+      <h3>DropVault</h3>
+      <h5>Sécurité</h5>
+      <h5>Fonctionnalités</h5>
+      <h5>Langues</h5>
+      <h5>Aide</h5>
+
+    </div>
+    <div class="foot2">
+      <h3>Assistance</h3>
+      <h5>Centre d'assistance</h5>
+      <h5>Cookies</h5>
+      <h5>Confidentialité et conditions</h5>
+      <h5>Aide</h5>
+
+      <br>
     </div>
   </div>
-  </footer>
-
+  <div class="container">
+    <div class="foot3">
+      <h3>Nous contacter</h3>
+      <h5>Facebook</h5>
+      <h5>Instagram</h5>
+      <h5>Twitter</h5>
+      <h5>Google</h5>
+    </div>
+    <div class="foot4">
+      <h3>A propos de</h3>
+      <h5>Médias</h5>
+      <h5>Forum</h5>
+      <h5>Blog</h5>
+      <h5>Parrainages</h5>
+    </div>
+  </div>
+</footer>
