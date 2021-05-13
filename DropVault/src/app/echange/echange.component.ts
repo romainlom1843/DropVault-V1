@@ -23,6 +23,8 @@ export class EchangeComponent implements OnInit {
   length
   type
   key_decrypt
+  result
+  result2
 
   constructor(private uploadService: UploadFilesService, private stockService: StockageService, private HttpClient: HttpClient, private authService: AuthentificationService) { }
 
@@ -33,20 +35,24 @@ export class EchangeComponent implements OnInit {
   }
  echange() {
 
-    this.key_decrypt =this.stockService.get_id(this.filename).subscribe(
-      id => this.stockService.download_key(id)
-    )
+  this.key_decrypt = this.stockService.get_id(this.filename).subscribe(
+    id => this.stockService.download_key(id).subscribe(
+      key => this.dechiffrement_key(key))
+  )
    
-	    rust.then( res => {
+  }
+  dechiffrement_key(key){
+    rust.then(res => {
+      console.log(key);
+      console.log(this.authService.passwd.slice(40,72))
+      this.result = res.decrypt(key, this.authService.passwd.slice(40, 72))
+      console.log(this.result)
+     // this.result2 = res.diffie_hellman(this.result)
+      //console.log(this.result2)
 
-	      var result = res.decrypt(this.key_decrypt, this.authService.hash_pass.slice(40,72));
-        console.log(result);       
-        var result2 = res.diffie_hellman(result)
-        console.log(result2)
- 
-	     
-	     });
-    
+    });
+
+
   }
 
   keepUser(event: any) {

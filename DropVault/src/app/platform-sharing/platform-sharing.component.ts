@@ -53,8 +53,8 @@ export class PlatformSharingComponent implements OnInit {
       
           var reader = new FileReader();
             reader.onload = (e) => {
-           var data=  reader.result;//binary 
-           this.text = new Int8Array(data)
+           /*this.text*/ var data=  reader.result;//binary 
+          // this.text = new Uint8Array(data)
             console.log(this.text)
             }
             reader.readAsArrayBuffer(this.selectedFile);   
@@ -74,8 +74,8 @@ export class PlatformSharingComponent implements OnInit {
 	    rust.then( res => {
 	      var result = res.encrypt_bin(this.text, this.key1);
         console.log(result);
-        console.log(this.authService.passwd.slice(51,83))
-        var result2 = res.encrypt(this.key1, this.authService.passwd.slice(51,83))
+        console.log(this.authService.passwd.slice(40,72))
+        var result2 = res.encrypt(this.key1, this.authService.passwd.slice(40,72))
         console.log(result2);
 	      this.uploadService.upload(this.filename, result,result2, this.length, this.type);       
 	     });

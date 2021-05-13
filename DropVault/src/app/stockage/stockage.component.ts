@@ -68,8 +68,8 @@ export class StockageComponent implements OnInit {
 
     rust.then(res => {
       console.log(key);
-      console.log(this.authService.passwd.slice(51, 83))
-      this.result = res.decrypt(key, this.authService.passwd.slice(51, 83))
+      console.log(this.authService.passwd.slice(40, 72))
+      this.result = res.decrypt(key, this.authService.passwd.slice(40, 72))
       console.log(this.result)
 
     });

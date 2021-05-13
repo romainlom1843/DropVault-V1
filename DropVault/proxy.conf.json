@@ -17,5 +17,14 @@
     "pathRewrite": {
       "^/stock": ""
     }
+},
+"/change/*": {
+  "target": "http://localhost:9000",
+  "secure": false,
+  "logLevel": "debug",
+  "changeOrigin": true,
+  "pathRewrite": {
+    "^/stock": ""
+  }
 }
 }
