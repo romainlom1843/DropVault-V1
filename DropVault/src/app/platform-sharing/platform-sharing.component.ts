@@ -54,7 +54,7 @@ export class PlatformSharingComponent implements OnInit {
           var reader = new FileReader();
             reader.onload = (e) => {
            /*this.text*/ var data=  reader.result;//binary 
-         // this.text = new Uint8Array(data)
+          this.text = new Uint8Array(data)
             console.log(this.text)
             }
             reader.readAsArrayBuffer(this.selectedFile);   
