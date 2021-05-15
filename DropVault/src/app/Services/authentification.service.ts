@@ -18,7 +18,7 @@ export class AuthentificationService {
   public user = String;
   authStatus = false;
 
-  constructor(private router: Router, private HttpClient: HttpClient, /*private echangeService: EchangeService*/) { }
+  constructor(private router: Router, private HttpClient: HttpClient) { }
 
   signIn(form: NgForm) {
 
@@ -92,12 +92,6 @@ export class AuthentificationService {
 
 
   }
-  /*Create_public_key(form:NgForm){
-    const username = form.value['username']
-    rust.then(res=> 
-      this.pubkey = res.create_pub_key()
-      )
-     this.echangeService.upload(this.pubkey, username)
-  }*/
+
 
 }

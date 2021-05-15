@@ -30,6 +30,32 @@
     </div>
   </form>
 </div>
+<br>
+<br>
+<h3 class="titre">Listez vos echanges</h3>
+<h6 class="titre2" routerLinkActive="active">ou <a routerLink="/upload">accéder à votre espace de dépot</a></h6>
+<br>
+
+
+<button class="btn-secondary" (click)="actualise()">Actualiser</button>
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>     
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let name of listFile">
+      <td></td>
+      <td><button class="btn" (click)="download(name)"><i class="fa fa-download"></i> {{name}} </button></td>
+      <td><button type="submit" class="btn btn-danger" (click)="onDelete(name)">Supprimer</button></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
 <footer>
   <br>
   <br>

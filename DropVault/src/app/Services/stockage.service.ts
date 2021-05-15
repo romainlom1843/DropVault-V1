@@ -24,20 +24,20 @@ export class StockageService {
   //get file id
   get_id(filename: String) {
     var username = this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     return this.http
       .get(`/stock/file/${username}/${filename}`, { headers });
   }
  //get type
  get_type(filename: String) {
   var username = this.authService.user
-  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+  const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
   return this.http
     .get(`/stock/ext/${filename}`, { headers });
 }
   //delete a file by id
   deleteFiles(id) {
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     this.http
       .delete(`/stock/files/${id}`, { headers })
       .subscribe(
@@ -52,7 +52,7 @@ export class StockageService {
   }
   // delete content in server
   delete_content(id) {
-    const headers = { 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Authorization': `Bearer ${this.authService.token}` }
     this.http
       .delete(`/stock/remove/${id}`, { headers })
       .subscribe(
@@ -68,7 +68,7 @@ export class StockageService {
 
   //download a file by id
   download(id: number) {
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     this.http
       .get(`/stock/download/${id}`, { headers })
       .subscribe(
@@ -86,32 +86,32 @@ export class StockageService {
   }
   //download content
   download_content(id) {
-    const headers = { 'Content-type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     return this.http
       .get(`/stock/dwl/${id}`, { headers, responseType: 'text' })
   }
   //download key
   download_key(id) {
-    const headers = { 'Content-type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     return this.http
       .get(`/stock/key/${id}`, { headers, responseType: 'text' })
   }
   //get type info
   getType() {
     var username = this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
    return this.http.get(`/stock/type/${username}`, { headers })
   }
   // get name info
   getFiles() {
     var username = this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     return this.http.get(`/stock/files/${username}`, { headers })
   }
   //get size info
   getSize() {
     var username = this.authService.user
-    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` }
+    const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.authService.token}` }
     return this.http.get(`/stock/size/${username}`, { headers })
   }
 

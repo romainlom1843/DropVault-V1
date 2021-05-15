@@ -24,7 +24,16 @@
   "logLevel": "debug",
   "changeOrigin": true,
   "pathRewrite": {
-    "^/stock": ""
+    "^/change": ""
+  }
+},
+"/exch/*": {
+  "target": "http://localhost:9001",
+  "secure": false,
+  "logLevel": "debug",
+  "changeOrigin": true,
+  "pathRewrite": {
+    "^/exch": ""
   }
 }
 }

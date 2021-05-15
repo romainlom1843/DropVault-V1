@@ -36,6 +36,7 @@ pub fn derive_passwd(passwd : String) -> String{
 	return parsed_hash.to_string()
 }
 
+
 // Key derivation hash password
 #[wasm_bindgen]
 pub fn derive_key(passwd : String) -> String{
@@ -57,38 +58,45 @@ pub fn derive_key(passwd : String) -> String{
 
 #[wasm_bindgen]
 
-pub fn create_pub_key() -> String {
+pub fn create_secret() -> String {
 
 	panic::set_hook(Box::new(console_error_panic_hook::hook));
 
-	let alice_secret = /*Ephemeral*/Secret::new(&mut OsRng);
-	let alice_public = PublicKey::from(&alice_secret);
-	return base64::encode(alice_public.as_bytes())
+	let secret = Secret::new(&mut OsRng);
+	return base64::encode(secret.as_bytes())
 	
 	
 }
 
 #[wasm_bindgen]
 
-pub fn diffie_hellman_alice(key2 : String, bob_pub_key: String){
+pub fn create_pub_key(secret: String) -> String {
 
 	panic::set_hook(Box::new(console_error_panic_hook::hook));
-	let alice_secret = /*Ephemeral*/Secret::new(&mut OsRng);
-	let bob_public = base64::decode(bob_pub_key).expect("decode");
-	let bob_pub = PublicKey::from_bytes(bob_public.as_ref()).expect("Public Key");
-	let alice_shared_secret = alice_secret.as_diffie_hellman(&bob_pub).expect("diffie Hellman");
-	encrypt_dh(key2, base64::encode(alice_shared_secret.as_bytes())[0..32].to_string());	
+
+	let secret_decode = base64::decode(&secret).expect("decode");
+	let secret = Secret::from_bytes(secret_decode.as_ref()).expect("secret");
+	let public_key = PublicKey::from(&secret);
+	return base64::encode(public_key.as_bytes())
+	
+	
 }
+
 #[wasm_bindgen]
 
-pub fn diffie_hellman_bob(key2 : String, alice_pub_key: String){
+pub fn diffie_hellman(secret: String, pub_key: String) -> String {
 
 	panic::set_hook(Box::new(console_error_panic_hook::hook));
-	let bob_secret = /*Ephemeral*/Secret::new(&mut OsRng);
-	let alice_public = base64::decode(alice_pub_key).expect("decode");
-	let alice_pub = PublicKey::from_bytes(alice_public.as_ref()).expect("Public Key");
-	let bob_shared_secret = bob_secret.as_diffie_hellman(&alice_pub).expect("diffie Hellman");
-	decrypt_dh(key2, base64::encode(bob_shared_secret.as_bytes())[0..32].to_string());	
+	
+	//web_sys::console::log_1(&secret.into());// regarder données en entrée
+	//web_sys::console::log_1(&pub_key.into());
+	
+	let secret_decode = base64::decode(&secret).expect("decode");
+	let secret = Secret::from_bytes(secret_decode.as_ref()).expect("secret");
+	let pub_key_decode = base64::decode(pub_key).expect("decode");
+	let public_key = PublicKey::from_bytes(pub_key_decode.as_ref()).expect("Public Key");
+	let shared_secret = secret.to_diffie_hellman(&public_key).expect("diffie Hellman");
+	return base64::encode(shared_secret.as_bytes())[0..32].to_string()
 }
 
 #[wasm_bindgen]

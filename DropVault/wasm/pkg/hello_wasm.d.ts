@@ -13,17 +13,18 @@ export function derive_key(passwd: string): string;
 /**
 * @returns {string}
 */
-export function create_pub_key(): string;
+export function create_secret(): string;
 /**
-* @param {string} key2
-* @param {string} bob_pub_key
+* @param {string} secret
+* @returns {string}
 */
-export function diffie_hellman_alice(key2: string, bob_pub_key: string): void;
+export function create_pub_key(secret: string): string;
 /**
-* @param {string} key2
-* @param {string} alice_pub_key
+* @param {string} secret
+* @param {string} pub_key
+* @returns {string}
 */
-export function diffie_hellman_bob(key2: string, alice_pub_key: string): void;
+export function diffie_hellman(secret: string, pub_key: string): string;
 /**
 * @param {string} contents
 * @param {string} key
