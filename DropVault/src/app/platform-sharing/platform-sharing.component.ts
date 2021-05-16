@@ -24,6 +24,7 @@ export class PlatformSharingComponent implements OnInit {
   type
   tab
   id
+  data
  
 
   constructor(private uploadService: UploadFilesService, private HttpClient: HttpClient, private authService: AuthentificationService,  private stockService: StockageService ) { }
@@ -53,8 +54,8 @@ export class PlatformSharingComponent implements OnInit {
       
           var reader = new FileReader();
             reader.onload = (e) => {
-           /*this.text*/ var data=  reader.result;//binary 
-          this.text = new Uint8Array(data)
+           /*this.text*/ this.data =  reader.result;//binary 
+          this.text = new Uint8Array(this.data)
             console.log(this.text)
             }
             reader.readAsArrayBuffer(this.selectedFile);   

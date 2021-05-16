@@ -153,7 +153,7 @@ pub fn decrypt_bin(ciphertext: String/*Vec<u8>*/, key: String) -> Vec<u8>{
 	let key = GenericArray::from_slice(key.as_bytes());
 	let cipher = Aes256Gcm::new(key);
 	let nonce = GenericArray::from_slice(b"unique nonce"); 
-  	let hex = base64::decode(ciphertext).expect("vec<u8>"); 	
+  	let hex = base64::decode(&ciphertext).expect("vec<u8>"); 	
    	let decryptext = cipher.decrypt(nonce, hex.as_ref() /*ciphertext.as_ref()*/)
    	 .expect("decryption failure!");  	 
    	return decryptext;
